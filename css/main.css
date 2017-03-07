@@ -93,7 +93,6 @@ h6 {
 .navbar-custom {
     background-color: #488E69;
     border-color: transparent;
-    height: 55px;
 }
 
 .navbar-custom .navbar-brand {
@@ -171,7 +170,7 @@ h6 {
         -moz-transition: all 0.3s;
         transition: all 0.3s;
     }
-    .navbar-custom .navbar-nav>.active>a {
+    .navbar-custom .navbar-nav> .active > a {
         border-radius: 3px;
     }
     .navbar-nav>li>a {
