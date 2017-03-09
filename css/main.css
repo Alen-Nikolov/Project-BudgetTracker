@@ -93,7 +93,6 @@ h6 {
 .navbar-custom {
     background-color: #488E69;
     border-color: transparent;
-    height: 55px;
 }
 
 .navbar-custom .navbar-brand {
@@ -300,11 +299,6 @@ section h2.section-heading {
     background-color: #6BA368;
 }
 
-#table>.row {
-    display: flex;
-    justify-content: space-between;
-}
-
 #table>.main-row {
     margin-top: 20px;
 }
@@ -327,8 +321,18 @@ section h2.section-heading {
     font-size: 1.5em;
 }
 
+#table>.row h5 {
+    text-transform: none;
+    font-size: 1em;
+}
+
+#table>.row .text-height {
+    line-height: 1em;
+}
+
 #table>div.border-green,
-#table>div.border-red {
+#table>div.border-red,
+#table>div.border-blue {
     border-top: 1px solid #fed136;
     border-left: 5px solid #488E69;
     border-collapse: collapse;
@@ -338,8 +342,13 @@ section h2.section-heading {
     border-left: 5px solid #f7ae85;
 }
 
+#table>div.border-blue {
+    border-left: 5px solid #1cbbb4;
+}
+
 #table>div.border-green.last,
-#table>div.border-red.last {
+#table>div.border-red.last,
+#table>div.border-blue.last {
     border-bottom: 1px solid #fed136;
 }
 
