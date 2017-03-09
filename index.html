@@ -12,7 +12,7 @@
     <!-- Custom Fonts -->
 
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -24,47 +24,44 @@
 
 <body id="page-top" class="index">
 
-    <nav>
-        <!-- Navigation -->
-        <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand page-scroll" href="#page-top">Budget</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="hidden">
-                            <a href="#page-top"></a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#budgets">бюджети</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#credits">кредити</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#savings">спестявания</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#payments">плащания</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#add">добавяне на плащания <i class="fa fa-plus-circle fa-2x fa-fw" aria-hidden="true"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+                <a class="navbar-brand page-scroll" href="#page-top">Budget</a>
             </div>
-            <!-- /.container-fluid -->
-        </nav>
-    </nav>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#budgets">бюджети</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#credits">кредити</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#savings">спестявания</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#payments">плащания</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#add">добавяне на плащания <i class="fa fa-plus-circle fa-2x fa-fw" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
     <!-- Header -->
     <header>
         <div class="container">
@@ -81,8 +78,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center align-self-center">
                     <h2 class="section-heading">Моите бюджети</h2>
-                    <div class="carousel">
-
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
                             <div class="item active">
@@ -110,7 +106,6 @@
                                 <p>Март 2017</p>
                             </div>
                         </div>
-
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -466,8 +461,7 @@
     <!-- Theme JavaScript -->
     <script src="js/budget.js"></script>
 
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 </body>
 

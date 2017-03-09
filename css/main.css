@@ -170,7 +170,7 @@ h6 {
         -moz-transition: all 0.3s;
         transition: all 0.3s;
     }
-    .navbar-custom .navbar-nav>.active>a {
+    .navbar-custom .navbar-nav> .active > a {
         border-radius: 3px;
     }
     .navbar-nav>li>a {
@@ -265,6 +265,11 @@ section {
     opacity: 1;
     color: #fed136;
 }
+.carousel-inner > .item > p,
+.carousel-inner > .item > a > p {
+      width: 70%;
+      margin: auto;
+  }
 
 section h2.section-heading {
     font-size: 30px;
