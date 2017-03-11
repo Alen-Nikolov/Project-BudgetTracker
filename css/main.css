@@ -170,7 +170,7 @@ h6 {
         -moz-transition: all 0.3s;
         transition: all 0.3s;
     }
-    .navbar-custom .navbar-nav> .active > a {
+    .navbar-custom .navbar-nav>.active>a {
         border-radius: 3px;
     }
     .navbar-nav>li>a {
@@ -265,11 +265,12 @@ section {
     opacity: 1;
     color: #fed136;
 }
-.carousel-inner > .item > p,
-.carousel-inner > .item > a > p {
-      width: 70%;
-      margin: auto;
-  }
+
+.carousel-inner>.item>p,
+.carousel-inner>.item>a>p {
+    width: 70%;
+    margin: auto;
+}
 
 section h2.section-heading {
     font-size: 30px;
@@ -304,56 +305,56 @@ section h2.section-heading {
     background-color: #6BA368;
 }
 
-#table>.main-row {
+.main-row {
     margin-top: 20px;
 }
 
-#table>.row .price-bold {
+.table .row .price-bold {
     color: black;
     font-size: 1.5em;
     font-weight: bold;
 }
 
-#table>.row .text-color {
+.table .row .text-color {
     font-size: 0.9em;
     line-height: 1.8em;
     color: grey;
     padding: 10px 0;
 }
 
-#table>.row h4 {
+.table .row h4 {
     text-transform: none;
     font-size: 1.5em;
 }
 
-#table>.row h5 {
+.table .row h5 {
     text-transform: none;
     font-size: 1em;
 }
 
-#table>.row .text-height {
+.table .row .text-height {
     line-height: 1em;
 }
 
-#table>div.border-green,
-#table>div.border-red,
-#table>div.border-blue {
+.table div.border-green,
+.table div.border-red,
+.table div.border-blue {
     border-top: 1px solid #fed136;
     border-left: 5px solid #488E69;
     border-collapse: collapse;
 }
 
-#table>div.border-red {
+.table div.border-red {
     border-left: 5px solid #f7ae85;
 }
 
-#table>div.border-blue {
+.table div.border-blue {
     border-left: 5px solid #1cbbb4;
 }
 
-#table>div.border-green.last,
-#table>div.border-red.last,
-#table>div.border-blue.last {
+.table div.border-green.last,
+.table div.border-red.last,
+.table div.border-blue.last {
     border-bottom: 1px solid #fed136;
 }
 
