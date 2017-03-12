@@ -22,18 +22,26 @@
 </head>
 
 <body id="page-top" class="index">
-
-    <!--LogIn Form
     <center>
         <div id="loginform">
             <form method="post" action="">
-                <input type="image" id="close_login" src="img/close.png"><br>
-                <p>Budget</p>
+                <h2>Budget</h2>
                 <p>Влез в профила си</p>
-
-                <input type="text" id="login" placeholder="Email Id" name="uid">
-                <input type="password" id="password" name="upass" placeholder="***">
-                <input type="submit" id="dologin" value="Login">
+                <input type="text" id="login" placeholder="Your username" name="uid">
+                <input type="password" id="password" placeholder="Your password" name="upass">
+                <button id="dologin">Login</button>
+                <button id="register">Create new account</button>
+            </form>
+        </div>
+    </center>
+    <center>
+        <div id="registerform">
+            <form method="post" action="">
+                <h2>Budget</h2>
+                <p>Направи си регистрация</p>
+                <input type="text" id="newId" placeholder="Your username" name="uid">
+                <input type="password" id="newPass" name="upass" placeholder="Your password">
+                <button id="createAcc">Register</button>
             </form>
         </div>
     </center>-->
@@ -475,6 +483,7 @@
 
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/login_effect.js"></script>
+    <script type="text/javascript" src="js/userService.js"></script>
 
 
 </body>

@@ -90,17 +90,24 @@ h6 {
     background-color: white;
 }
 
-
-/*log in */
-
-center {
-    margin-top: 200px;
-    /*height: 500px;*/
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: grey;
+    opacity: 0.7;
+    z-index: 1000;
 }
 
-#loginform {
+#loginform,
+#registerform {
+    position: fixed;
+    top: 10px;
+    left: 32%;
     width: 500px;
-    height: 330px;
+    height: 400px;
     margin-top: 100px;
     background-color: #585858;
     border-radius: 3px;
@@ -108,25 +115,29 @@ center {
     padding: 10px;
     box-sizing: border-box;
     font-family: helvetica;
-    visibility: hidden;
-    display: block;
+    opacity: 1;
+    z-index: 1002;
 }
 
-#loginform #close_login {
-    /*position: absolute;
-    top: 140px;
-    left: 735px;*/
-    width: 15px;
-    height: 15px;
+#registerform {
+    z-index: 1001;
 }
 
-#loginform p {
-    margin-top: 40px;
-    font-size: 22px;
+#loginform h2,
+#registerform h2 {
+    margin: auto;
+    font-size: 2.5em;
+}
+
+#loginform p,
+#registerform p {
+    margin-top: 20px;
+    font-size: 1.8em;
     color: #E6E6E6;
 }
 
-#loginform #login {
+#loginform #login,
+#registerform #newId {
     width: 250px;
     height: 40px;
     border: 2px solid silver;
@@ -134,7 +145,8 @@ center {
     padding: 5px;
 }
 
-#loginform #password {
+#loginform #password,
+#registerform #newPass {
     margin-top: 5px;
     width: 250px;
     height: 40px;
@@ -143,16 +155,27 @@ center {
     padding: 5px;
 }
 
-#loginform #dologin {
-    margin-left: -5px;
+#loginform #dologin,
+#registerform #createAcc {
     margin-top: 10px;
     width: 250px;
     height: 40px;
     border: none;
-    border-radius: 3px;
+    border-radius: 4px;
     color: #E6E6E6;
     background-color: grey;
     font-size: 20px;
+}
+
+#loginform #register {
+    margin-top: 15px;
+    width: 250px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    background-color: #585858;
+    text-decoration: underline;
+    font-size: 1.2em;
 }
 
 .navbar-custom {
@@ -533,4 +556,5 @@ img::-moz-selection {
 
 body {
     -webkit-tap-highlight-color: #fed136;
+    z-index: 1;
 }

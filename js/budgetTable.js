@@ -13,8 +13,6 @@
             // sumOfIncomeDivs = elem.target.value + elem.target.value;
         }, false);
     });
-
-
     //event listener on button Change budget
     buttonBudget.addEventListener("click", function(event) {
         event = event || window.event;
