@@ -90,20 +90,21 @@ h6 {
     background-color: white;
 }
 
-
-/*log in */
-
-center {
-    margin-top: 200px;
-    /*height: 500px;*/
+.overlay {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color:grey;
+    opacity:0.7;
+    z-index:1001;
 }
 
-
-/*#show_login {
-    position:
-}*/
-
 #loginform {
+    position: fixed;
+    top:10px;
+    left:30%;
     width: 500px;
     height: 330px;
     margin-top: 100px;
@@ -113,21 +114,17 @@ center {
     padding: 10px;
     box-sizing: border-box;
     font-family: helvetica;
-    visibility: hidden;
-    display: block;
+    opacity:1;
+    z-index:1002;
 }
 
-#loginform #close_login {
-    /*position: absolute;
-    top: 140px;
-    left: 735px;*/
-    width: 15px;
-    height: 15px;
+#loginform h2{
+    margin:auto;
+    font-size: 2.5em;
 }
-
 #loginform p {
-    margin-top: 40px;
-    font-size: 22px;
+    margin-top: 20px;
+    font-size: 1.8em;
     color: #E6E6E6;
 }
 
@@ -149,12 +146,11 @@ center {
 }
 
 #loginform #dologin {
-    margin-left: -5px;
     margin-top: 10px;
     width: 250px;
     height: 40px;
     border: none;
-    border-radius: 3px;
+    border-radius: 4px;
     color: #E6E6E6;
     background-color: grey;
     font-size: 20px;
@@ -233,6 +229,7 @@ center {
         transition: padding 0.3s;
         border: none;
         height: 90px;
+        z-index: 50;
     }
     .navbar-custom .navbar-brand {
         font-size: 2.5em;
@@ -466,4 +463,5 @@ img::-moz-selection {
 
 body {
     -webkit-tap-highlight-color: #fed136;
+    z-index: 1;
 }

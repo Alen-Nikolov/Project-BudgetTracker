@@ -5,7 +5,6 @@
     var divsToRemove = document.querySelectorAll('.hide-content > div');
     var inputs = document.querySelectorAll("#budgets .hide-content>input");
     var inputsInIncome = document.querySelectorAll("#income input");
-    console.log(inputsInIncome);
     // var hideContentDivs = document.getElementsByClassName('hide-content');
 
     //evet listener on input value (keypress)
@@ -15,8 +14,6 @@
             // sumOfIncomeDivs = elem.target.value + elem.target.value;
         }, false);
     });
-    console.log(sumOfIncomeDivs)
-
 
     //event listener on button Change budget
     buttonBudget.addEventListener("click", function(event) {
