@@ -23,7 +23,7 @@
 
 <body id="page-top" class="index">
 
-    <!--LogIn Form-->
+    <!--LogIn Form
     <center>
         <div id="loginform">
             <form method="post" action="">
@@ -36,7 +36,45 @@
                 <input type="submit" id="dologin" value="Login">
             </form>
         </div>
-    </center>
+    </center>-->
+    <!--Right menu button-->
+    <div id="right-menu-wrapper">
+        <div class="close-area"></div>
+
+        <div class="right-menu">
+            <div class="right-menu-header">
+                <h4>Добави</h4><span class="close-icon"></span>
+            </div>
+            <div class="rigth-menu-body">
+                <div class="buttons">
+                    <a id="transIncomes" class="btn" href="">Доход</a>
+                    <a id="transExpense" class="btn" href="">Разход</a>
+                    <a id="transSavings" class="btn" href="">Спестяване</a>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="date" class="control-label">Дата: </label>
+                    <div class="select-date">
+                        <input type="date" name="date" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="amount" class="control-label">Сума: </label>
+                    <div class="select-date">
+                        <input type="number" name="number" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="control-label">Коментар:</label>
+                    <div class="description">
+                        <textarea class="form-control " ng-maxlength="200" name="description" placeholder="Пример: Сметка за ток"></textarea>
+                    </div>
+                </div>
+                <button id="btnChooseCategory" class="button button-success form-button center-block " type="button">Избери категория</button>
+            </div>
+        </div>
+
+    </div>
 
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -68,7 +106,7 @@
                         <a class="page-scroll" href="#payments">плащания</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#add">добавяне на плащания <i class="fa fa-plus-circle fa-2x fa-fw" aria-hidden="true"></i></a>
+                        <a id="transBtn" class="page-scroll" href="#add">добавяне на плащания <i class="fa fa-plus-circle fa-2x fa-fw" aria-hidden="true"></i></a>
                     </li>
                 </ul>
             </div>
