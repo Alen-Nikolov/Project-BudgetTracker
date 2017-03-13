@@ -34,21 +34,23 @@
 
 (function() {
     var transButton = document.getElementById("transBtn");
-    var menuRight = document.getElementById("right-menu-wrapper");
+    var menuRightExpense = document.getElementById("right-menu-wrapper-expense");
+    var creditButton = document.getElementById("addCredit");
+    var menuRightCredit = document.getElementById("right-menu-wrapper-credit");
 
     transButton.addEventListener("click", function() {
-        menuRight.style.display = "flex";
-
+        menuRightExpense.style.display = "flex";
+    }, false);
+    creditButton.addEventListener("click", function() {
+        menuRightCredit.style.display = "flex";
     }, false);
 
     function closeMenu(event) {
-        menuRight.style.display = "none";
+        menuRightExpense.style.display = "none";
         event.preventDefault()
     };
     var closeIcon = document.querySelector(".right-menu-header span");
-    var closeArea = document.querySelector("#right-menu-wrapper .close-area");
-    console.log(closeIcon)
-    console.log(closeArea)
+    var closeArea = document.querySelector("#right-menu-wrapper-expense .close-area");
 
     closeIcon.addEventListener("click", closeMenu, false);
     closeArea.addEventListener("click", closeMenu, false);
