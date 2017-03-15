@@ -189,6 +189,7 @@ h6 {
 .navbar-custom {
     background-color: #488E69;
     border-color: transparent;
+    z-index: 20;
 }
 
 .navbar-custom .navbar-brand {
