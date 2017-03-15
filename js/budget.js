@@ -14,6 +14,9 @@
     });
 
     // jQuery for page scrolling feature - requires jQuery Easing plugin
+    $('.navbar-collapse ul li a').click(function() {
+        $('.navbar-toggle:visible').click();
+    });
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
         $('html, body').stop().animate({
@@ -22,7 +25,18 @@
         event.preventDefault();
     });
 
+<<<<<<< HEAD
     // // Offset for Main Navigation
+=======
+    // Highlight the top nav as scrolling occurs
+    $('body').scrollspy({
+        target: '.navbar-fixed-top',
+        offset: 51
+    });
+
+
+    // Offset for Main Navigation
+>>>>>>> origin/master
     // $('#mainNav').affix({
     //     offset: {
     //         top: 100

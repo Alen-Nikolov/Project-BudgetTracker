@@ -5,14 +5,29 @@
     var divsToRemove = document.querySelectorAll('.hide-content > div');
     var inputs = document.querySelectorAll("#budgets .hide-content>input");
     var inputsInIncome = document.querySelectorAll("#income input");
-
+    var inputsInExpenses=document.querySelectorAll("#expense input");
     //evet listener on input value (keypress)
+    //calculating all income, 2 items-zaplata and money from last month
     var sumOfIncomeDivs = 0;
     Array.prototype.forEach.call(inputsInIncome, function(elem) {
-        elem.addEventListener("keypress", function(event) {
-            // sumOfIncomeDivs = elem.target.value + elem.target.value;
+        elem.addEventListener("keyup", function() {
+            sumOfIncomeDivs=Number(inputsInIncome[0].value)+Number(inputsInIncome[1].value);
+            $('.income-aggregate').text(sumOfIncomeDivs.toFixed(2));
         }, false);
     });
+    //Calculating all expenses(15)
+    var sumOfExpensesDivs=0;
+    Array.prototype.forEach.call(inputsInExpenses,function(elem){
+        elem.addEventListener("keyup",function(){
+            var sum=0;
+            for(var index=0;index<inputsInExpenses.length;index++){
+                sum+=Number(inputsInExpenses[index].value);
+            }
+            sumOfExpensesDivs=sum;
+            console.log( $('.expenses-aggregate'));
+             $('.expenses-aggregate').text(sumOfExpensesDivs.toFixed(2));
+        },false);
+    })
     //event listener on button Change budget
     buttonBudget.addEventListener("click", function(event) {
         event = event || window.event;
