@@ -6,13 +6,16 @@
     var inputs = document.querySelectorAll("#budgets .hide-content>input");
     var inputsInIncome = document.querySelectorAll("#income input");
     var inputsInExpenses=document.querySelectorAll("#expense input");
+    var unexpectedExpenses=document.querySelector("#unexpectedExpense input[type=text]");
     //evet listener on input value (keypress)
     //calculating all income, 2 items-zaplata and money from last month
     var sumOfIncomeDivs = 0;
     Array.prototype.forEach.call(inputsInIncome, function(elem) {
         elem.addEventListener("keyup", function() {
             sumOfIncomeDivs=Number(inputsInIncome[0].value)+Number(inputsInIncome[1].value);
-            $('.income-aggregate').text(sumOfIncomeDivs.toFixed(2));
+            if(!isNaN(sumOfIncomeDivs.toFixed(2))){
+             $('.income-aggregate').text(sumOfIncomeDivs.toFixed(2));
+            }
         }, false);
     });
     //Calculating all expenses(15)
@@ -24,20 +27,33 @@
                 sum+=Number(inputsInExpenses[index].value);
             }
             sumOfExpensesDivs=sum;
-            console.log( $('.expenses-aggregate'));
-             $('.expenses-aggregate').text(sumOfExpensesDivs.toFixed(2));
+            if(!isNaN(sumOfExpensesDivs.toFixed(2))){
+                $('.expenses-aggregate').text(sumOfExpensesDivs.toFixed(2));
+            }
         },false);
-    })
+    });
+    unexpectedExpenses.addEventListener('keyup',function(){
+         var inputValue=Number(unexpectedExpenses.value);
+         if(!isNaN(inputValue.toFixed(2))){
+            $('.savings-aggregate').text(inputValue.toFixed(2));
+         }
+    },false)
     //event listener on button Change budget
     buttonBudget.addEventListener("click", function(event) {
         event = event || window.event;
         buttonBudget.style.backgroundColor = "#6BA368";
         overviewBudget.style.backgroundColor = "white";
+        
         //Hides main divs
         for (var index = 0; index < divsToRemoveMain.length; index++) {
             divsToRemoveMain[index].style.display = "none";
         }
-
+        var aggregateDivs=document.querySelectorAll('.hide-content-main>div:last-of-type');
+        aggregateDivs=Array.prototype.slice.call(aggregateDivs,0,3);
+        Array.prototype.forEach.call(aggregateDivs,function(elem){
+            elem.style.fontSize="1.8em";
+            elem.style.float="right";
+        });
         //Shows the sum of divs 
         var sumOfDivs = document.querySelectorAll("#budgets .hide-content-main>div:last-of-type");
         Array.prototype.forEach.call(sumOfDivs, function(elem) {

@@ -162,5 +162,4 @@ function Payment(date, type, amount, comment, category) {
 };
 
 var sav = new Savings("Travelling", 100, 5000, new Date("July, 2018 01:15:00"));
-console.log(sav.monthlyPayment)
 userManegment.displayUsers()

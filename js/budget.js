@@ -17,12 +17,6 @@
     $('.navbar-collapse ul li a').click(function() {
         $('.navbar-toggle:visible').click();
     });
-        // Offset for Main Navigation
-    $('#mainNav').affix({
-        offset: {
-            top: 100
-        }
-    })
 
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
