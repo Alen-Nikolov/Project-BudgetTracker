@@ -145,28 +145,22 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
                             <div class="item active">
-                                <p>Септември 2016 <i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
+                                <p>Март 2017 &nbsp;<i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
                             </div>
 
                             <div class="item">
-                                <p>Октомври 2016 <i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
+                                <p>Април 2017 &nbsp;<i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
                             </div>
 
                             <div class="item">
-                                <p>Ноември 2016 <i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
+                                <p>Май 2017 &nbsp;<i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
                             </div>
 
                             <div class="item">
-                                <p>Декември 2016 <i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
+                                <p>Юни 2017 &nbsp;<i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
                             </div>
                             <div class="item">
                                 <p>Януари 2017 <i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
-                            </div>
-                            <div class="item">
-                                <p>Февруари 2017 <i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
-                            </div>
-                            <div class="item">
-                                <p>Март 2017 <i class="fa fa-calendar fa-lg" aria-hidden="true"></i></p>
                             </div>
                         </div>
                         <!-- Left and right controls -->
@@ -484,14 +478,14 @@
                 <div class="rigth-menu-body">
                     <hr>
                     <div class="form-group">
-                        <label for="date" class="control-label">Име на кредита: span </label>
-                        <div class="select-date">
-                            <input type="date" name="date" class="form-control" value="Пример: Кредит в ДСК">
+                        <label for="date" class="control-label">Име на кредита:  </label>
+                        <div class="bank-name">
+                            <input type="text" name="bankName" class="form-control" placeholder="Пример: Кредит в ДСК">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="amount" class="control-label">Сума: </label>
-                        <div class="select-date">
+                        <div class="amount">
                             <input type="number" name="number" class="form-control">
                         </div>
                     </div>
@@ -502,6 +496,136 @@
                         </div>
                     </div>
                     <button id="btnChooseCategory" class="button button-success form-button center-block " type="button">Избери категория</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="savings">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center align-self-center">
+                    <h2 class="section-heading">Моите спестявания</h2>
+                </div>
+            </div>
+            <hr>
+            <div class="row table">
+                <div class=" col-lg-6 col-md-offset-3">
+                    <div class="row main-row">
+                        <div class="col-lg-8">
+                            <h3>Всички</h3>
+                        </div>
+                        <div class="col-lg-4 text-color hide-content-main">
+                            <div>
+                                <div class="col-lg-6">налични: </div>
+                                <div class="col-lg-6 text-right price-bold">2000.00</div>
+                            </div>
+                            <div>
+                                <div class="col-lg-6">цел: </div>
+                                <div class="col-lg-6 text-right">1700.00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row border-red last">
+                        <div class="col-lg-8">
+                            <h4>0.00%</h4>
+                        </div>
+                        <div class="col-lg-4 text-color">
+                            <div>
+                                <div class="col-lg-12 text-right price-bold">2000.00</div>
+                            </div>
+                            <div>
+                                <div class="col-lg-12 text-right">1700.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="addSavings" class="button button-warning page-button center-block ng-binding ">Добави спестяване</button>
+        </div>
+        <!--form add credit -->
+        <div id="right-menu-wrapper-savings" class="row">
+            <div class="close-area col-8"></div>
+
+            <div class="right-menu col-12 col-sm-12 col-lg-4">
+                <div class="right-menu-header">
+                    <h4>ДОБАВИ ЦЕЛ ЗА СПЕСТЯВАНЕ</h4><span class="close-icon"></span>
+                </div>
+                <div class="rigth-menu-body">
+                    <hr>
+                    <div class="form-group">
+                        <label for="date" class="control-label">Цел на спестяването:  </label>
+                        <div class="bank-name">
+                            <input type="text" name="bankName" class="form-control" placeholder="Пример: Почивка в Хаваите">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="initial-amount" class="control-label">Първоначална налична сума: </label>
+                        <div class="initial-amount">
+                            <input type="number" name="number" class="form-control" placeholder="Пример: 200.00">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="desire-amount" class="control-label">Желана сума за спестяване: </label>
+                        <div class="desire-amount">
+                            <input type="number" name="number" class="form-control" placeholder="Пример: 1500.00">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate" class="control-label">Желана сума за спестяване: </label>
+                        <div class="endDate">
+                            <input type="date" name="date" class="form-control" placeholder="Пример: Юни">
+                        </div>
+                    </div>
+
+                    <button id="btnChooseCategory" class="button button-success form-button center-block " type="button">Запази промените</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="payments">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center align-self-center">
+                    <h2 class="section-heading">Моите плащания</h2>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-5">
+                    <canvas id="payment-diagram"> </canvas>
+                </div>
+                <div class="col-md-7">
+                    <div id="payment-buttons">
+                        <span><a href="" id="allMonths">Всички</a></span>
+                        <span><a href="" id="currentMonth">Този месец</a></span>
+                    </div>
+                    <h2 class="heading-center-line"><span class="ng-binding">Март 2017</span></h2>
+
+                    <div id="payment-table" class="col-lg-12">
+                        <article id="listOfPayments">
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <div class="transaction-list-item">
+                                        <div class="transaction-date">14</div>
+                                        <div class="transaction-list-item-body">
+                                            <span class="transaction-list-item-name">Почивка на Хаваите</span>
+                                            <br>
+                                            <span class="transaction-list-item-description"></span>
+                                        </div>
+                                        <div class="pull-right">
+                                            <div class="transaction-list-item-amount saving-amount">
+                                                <span>-</span>
+                                                <span>+</span>
+                                                <span class="ng-binding">-20.00</span>
+                                            </div>
+                                            <a class="remove-button-icon fa-lg"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a class="edit-button-icon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </div>
         </div>

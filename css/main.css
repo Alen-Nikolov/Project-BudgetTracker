@@ -286,7 +286,9 @@ h6 {
     }
 }*/
 
-#right-menu-wrapper-expense {
+#right-menu-wrapper-expense,
+#right-menu-wrapper-credit,
+#right-menu-wrapper-savings {
     position: fixed;
     z-index: 1000;
     width: 100%;
@@ -295,11 +297,6 @@ h6 {
     left: 0;
     display: none;
     margin: 0;
-}
-
-#right-menu-wrapper-credit {
-    display: none;
-    /*top: 2000px;*/
 }
 
 .right-menu {
@@ -457,18 +454,21 @@ section h2.section-heading {
     }
 }
 
-#diagram {
+#diagram,
+#payment-diagram {
     width: 450px;
     height: 400px;
     background-color: #9CFC97;
     margin: auto;
 }
 
-#buttons {
+#buttons,
+#payment-buttons {
     padding-left: 30px;
 }
 
-#buttons a {
+#buttons a,
+#payment-buttons a {
     color: darkslategrey;
     padding: 10px;
     text-decoration: none;
@@ -542,7 +542,8 @@ div.border-blue.last {
     text-align: center;
 }
 
-#addCredit {
+#addCredit,
+#addSavings {
     width: 290px;
     height: 44px;
     font-size: 1.2em;
@@ -556,10 +557,90 @@ div.border-blue.last {
     margin-bottom: 65px;
 }
 
-#addCredit:hover {
+#addCredit:hover,
+#addSavings:hover {
     background-color: #fed136;
     color: #333;
     font-weight: bold
+}
+
+.heading-center-line {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #488E69;
+    line-height: .1em;
+    margin: 30px 0 20px;
+    font-size: 16px;
+}
+
+.ng-binding {
+    background-color: #fff;
+    padding: 5px;
+}
+
+.transaction-list-item {
+    height: 52px;
+    line-height: 52px;
+    border: 1px solid #c1c1c1;
+    border-right: none;
+    margin-bottom: 16px;
+}
+
+.transaction-date {
+    height: 50px;
+    width: 36px;
+    text-align: center;
+    background-color: #797979;
+    color: #dcdcdc;
+    float: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.transaction-list-item-body {
+    float: left;
+    font-size: 18px;
+    margin-left: 6px;
+    line-height: 25px;
+}
+
+.transaction-list-item-name {
+    top: 14px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 230px;
+    display: inline-block;
+}
+
+.transaction-list-item-amount {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.remove-button-icon {
+    outline: none;
+    border: none;
+    height: 20px;
+    width: 20px;
+    margin-left: 16px;
+    position: relative;
+    top: 2px;
+    padding: 0;
+}
+
+.edit-button-icon {
+    outline: none;
+    border: none;
+    height: 20px;
+    width: 20px;
+    margin-left: 10px;
+    margin-right: 4px;
+    position: relative;
+    top: 2px;
+    padding: 0;
 }
 
 .btn:focus,

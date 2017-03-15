@@ -7,6 +7,8 @@
     var inputsInIncome = document.querySelectorAll("#income input");
     var inputsInExpenses=document.querySelectorAll("#expense input");
     var unexpectedExpenses=document.querySelector("#unexpectedExpense input[type=text]");
+    var aggregateDivs=document.querySelectorAll('.hide-content-main>div:last-of-type');
+    aggregateDivs=Array.prototype.slice.call(aggregateDivs,0,3);
     //evet listener on input value (keypress)
     //calculating all income, 2 items-zaplata and money from last month
     var sumOfIncomeDivs = 0;
@@ -48,8 +50,6 @@
         for (var index = 0; index < divsToRemoveMain.length; index++) {
             divsToRemoveMain[index].style.display = "none";
         }
-        var aggregateDivs=document.querySelectorAll('.hide-content-main>div:last-of-type');
-        aggregateDivs=Array.prototype.slice.call(aggregateDivs,0,3);
         Array.prototype.forEach.call(aggregateDivs,function(elem){
             elem.style.fontSize="1.8em";
             elem.style.float="right";
@@ -77,13 +77,13 @@
         event = event || window.event;
         buttonBudget.style.backgroundColor = "white";
         overviewBudget.style.backgroundColor = "#6BA368"
-
+      
+        Array.prototype.forEach.call(aggregateDivs,function(elem){
+            elem.style.fontSize="1em";
+        })
         var inputValue = document.querySelectorAll("#budgets .hide-content>div:last-of-type");
         for (var index = 0; index < inputs.length; index++) {
-            var value = inputs[index].value;
-            if (value.length <= 0) {
-                value = "0.00";
-            }
+            var value = Number(inputs[index].value).toFixed(2);
             inputValue[index].innerHTML = value;
             inputs[index].style.display = "none";
         }
