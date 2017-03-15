@@ -25,18 +25,7 @@
         event.preventDefault();
     });
 
-<<<<<<< HEAD
-    // // Offset for Main Navigation
-=======
-    // Highlight the top nav as scrolling occurs
-    $('body').scrollspy({
-        target: '.navbar-fixed-top',
-        offset: 51
-    });
-
-
     // Offset for Main Navigation
->>>>>>> origin/master
     // $('#mainNav').affix({
     //     offset: {
     //         top: 100
