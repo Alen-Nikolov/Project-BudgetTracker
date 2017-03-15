@@ -6,6 +6,13 @@
         offset: 51
     });
 
+
+    // Highlight the top nav as scrolling occurs
+    $('body').scrollspy({
+        target: '.navbar-fixed-top',
+        offset: 51
+    });
+
     // Closes the Responsive Menu on Menu Item Click
     $('.navbar-collapse ul li a').click(function() {
         $('.navbar-toggle:visible').click();
@@ -25,9 +32,6 @@
         event.preventDefault();
     });
 
-  
-
-
 
 })(jQuery); // End of use strict
 
@@ -46,15 +50,22 @@
         menuRightCredit.style.display = "flex";
     }, false);
 
-    function closeMenu(event) {
+    function closeMenuExpense(event) {
         menuRightExpense.style.display = "none";
+        event.preventDefault()
+    };
+
+    function closeMenuCredit(event) {
+        menuRightCredit.style.display = "none";
         event.preventDefault()
     };
     var closeIcon = document.querySelector(".right-menu-header span");
     var closeArea = document.querySelector("#right-menu-wrapper-expense .close-area");
 
-    closeIcon.addEventListener("click", closeMenu, false);
-    closeArea.addEventListener("click", closeMenu, false);
+    closeIcon.addEventListener("click", closeMenuExpense, false);
+    closeArea.addEventListener("click", closeMenuExpense, false);
+    closeIcon.addEventListener("click", closeMenuCredit, false);
+    closeArea.addEventListener("click", closeMenuCredit, false);
 
     var buttons = document.querySelectorAll(".buttons a");
     console.log(buttons)
