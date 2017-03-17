@@ -117,7 +117,7 @@
                         <a class="page-scroll" href="#payments">плащания</a>
                     </li>
                     <li>
-                        <a id="transBtn" class="page-scroll" href="#add">добавяне на плащания <i class="fa fa-plus-circle fa-2x fa-fw" aria-hidden="true"></i></a>
+                        <a id="transBtn">добавяне на плащания <i class="fa fa-plus-circle fa-2x fa-fw" aria-hidden="true"></i></a>
                     </li>
                 </ul>
             </div>
@@ -178,7 +178,9 @@
             <hr>
             <div class="row">
                 <div class="col-md-5">
-                    <div id="diagram"> </div>
+                    <div id="diagram">
+                        <canvas id="incomeChart" width="450px" height="500px"></canvas>
+                        </div>
                 </div>
                 <div class="col-md-7">
                     <div id="buttons">
@@ -197,7 +199,7 @@
                                     <div class="col-lg-6">получени: </div>
                                     <div class="col-lg-6 text-right price-bold">2000.00</div>
                                     <div class="col-lg-6">планирани: </div>
-                                    <div class="col-lg-6 text-right income-aggregate">1700.00</div>
+                                    <div class="col-lg-6 text-right income-aggregate">0.00</div>
                                 </div>
 
                             </div>
@@ -231,7 +233,7 @@
                                     <div class="col-lg-6">получени: </div>
                                     <div class="col-lg-6 text-right price-bold">2000.00</div>
                                     <div class="col-lg-6">похарчени: </div>
-                                    <div class="col-lg-6 text-right expenses-aggregate">1700.00</div>
+                                    <div class="col-lg-6 text-right expenses-aggregate">0.00</div>
                                 </div>
                             </div>
                             <div class="row border-red">
@@ -403,7 +405,7 @@
                                     <div class="col-lg-6">спестени: </div>
                                     <div class="col-lg-6 text-right price-bold">00.00</div>
                                     <div class="col-lg-6">планирани: </div>
-                                    <div class="col-lg-6 text-right savings-aggregate">00.00</div>
+                                    <div class="col-lg-6 text-right savings-aggregate">0.00</div>
                                 </div>
                             </div>
                         </article>
@@ -647,6 +649,9 @@
     <script src="js/budget.js"></script>
     <script src="js/budgetTable.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--Library for Charts-->
+    <script src="js/Chart.js"></script>
+    <script src="js/charts.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/login_effect.js"></script>
