@@ -275,16 +275,16 @@ h6 {
         padding-bottom: 5px;
     }
 }
-
+/*
 @media (min-width: 768px) {
     .navbar-custom.affix {
-        background-color: #222222;
+        background-color: #488E69;
         padding: 10px 0;
     }
     .navbar-custom.affix .navbar-brand {
         font-size: 1.5em;
     }
-}
+}*/
 
 #right-menu-wrapper-expense,
 #right-menu-wrapper-credit,
@@ -457,8 +457,8 @@ section h2.section-heading {
 #diagram,
 #payment-diagram {
     width: 450px;
-    height: 400px;
-    background-color: #9CFC97;
+    height: 500px;
+    background-color: #6D6875;
     margin: auto;
 }
 

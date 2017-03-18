@@ -176,6 +176,6 @@ function Transaction(date, amount, comment, category) {
     this.category = category;
 };
 
-var sav = new Saving("Travelling", 100, 5000, new Date("July, 2018 01:15:00"));
-// console.log(sav.monthlyPayment)
-// console.log(userManegment.displayUsers()[0].budgets[0].expenses);
+
+var sav = new Savings("Travelling", 100, 5000, new Date("July, 2018 01:15:00"));
+userManegment.displayUsers()
