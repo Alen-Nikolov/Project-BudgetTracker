@@ -28,12 +28,30 @@ var userManegment = (function() {
             });
         },
         displayUsers: function() {
-            console.log(users);
+            return users;
+        },
+        getUser: function(username) {
+            return users.find(function(u) {
+                return u.username === username;
+            })
         }
     }
 })();
+User.prototype.addPlannedValueToBudgetIncomes = function(value, number) {
+    this.budgets[0].incomes[number].planned = value;
+};
+User.prototype.addPlannedValueToBudgetExpenses = function(value, number) {
+    this.budgets[0].expenses[number].planned = value;
+};
 
-User.prototype.addPayment = function(date, type, amount, comment, category) {
+User.prototype.addCredit = function(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
+    this.credits.push(new Credit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate));
+};
+User.prototype.addSaving = function(purpose, initialAmount, desiredAmount, endDate) {
+    this.savings.push(new Saving(purpose, initialAmount, desiredAmount, endDate));
+};
+
+User.prototype.addTransaction = function(date, amount, comment, category, type) {
 
 
 };
@@ -41,16 +59,16 @@ User.prototype.copyBudget = function() {
 
 };
 
-
-function Budget(user, month) {
+function Budget(user, date) {
     this.user = user;
-    this.month = month;
+    this.date = date;
+
     this.incomes = [{
         name: "salary",
         planned: 0,
         received: 0
     }, {
-        name: "",
+        name: "mdmanddn",
         planned: 0,
         received: 0
     }];
@@ -117,9 +135,7 @@ function Budget(user, month) {
         received: 0
     }];
 
-    this.credits = [];
-    this.savings = [];
-    this.paymets = [];
+    this.transactions = [];
 };
 
 
@@ -131,7 +147,7 @@ function Credit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
     this.maturityDate = maturityDate;
 };
 
-function Savings(purpose, initialAmount, desiredAmount, endDate) {
+function Saving(purpose, initialAmount, desiredAmount, endDate) {
     this.startDate = new Date();
     this.purpose = purpose;
     this.initialAmount = initialAmount;
@@ -141,7 +157,7 @@ function Savings(purpose, initialAmount, desiredAmount, endDate) {
     this.monthlyPayment = this.calculateMonthlyPayment();
 };
 
-Savings.prototype.calculateMonthlyPayment = function() {
+Saving.prototype.calculateMonthlyPayment = function() {
 
     var months;
     months = (this.endDate.getFullYear() - this.startDate.getFullYear()) * 12;
@@ -153,14 +169,13 @@ Savings.prototype.calculateMonthlyPayment = function() {
 
 };
 
-function Payment(date, type, amount, comment, category) {
+function Transaction(date, amount, comment, category) {
     this.date = date;
-    this.type = type;
     this.amount = amount;
     this.comment = comment;
     this.category = category;
 };
 
-var sav = new Savings("Travelling", 100, 5000, new Date("July, 2018 01:15:00"));
-console.log(sav.monthlyPayment)
-userManegment.displayUsers()
+var sav = new Saving("Travelling", 100, 5000, new Date("July, 2018 01:15:00"));
+// console.log(sav.monthlyPayment)
+// console.log(userManegment.displayUsers()[0].budgets[0].expenses);

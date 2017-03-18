@@ -1,4 +1,5 @@
-//login form made to popUp on loading of the page
+//login form made to popUp on loading of the page            var currentUser
+var currentUser = null;
 $(document).ready(function() {
     $(".overlay, #loginform").show();
     $("#dologin").click(function(e) {
@@ -9,6 +10,7 @@ $(document).ready(function() {
         "admin" and password is "1234" 
         to hide the login and show the page*/
         if (userManegment.loginUser(username.value, password.value)) {
+            currentUser = userManegment.getUser(username.value);
             $(".overlay, #registerform").hide();
             $(".overlay, #loginform").hide();
         } else {
