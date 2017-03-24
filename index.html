@@ -54,36 +54,75 @@
         <div class="close-area col-8"></div>
 
         <div class="right-menu col-12 col-sm-12 col-lg-4">
-            <div class="right-menu-header">
-                <h4>Добави</h4><span class="close-icon"></span>
+            <div class="inputView">
+                <div class="right-menu-header">
+                    <h4>Добави</h4><span class="close-icon"></span>
+                </div>
+                <div class="rigth-menu-body">
+                    <div class="buttons">
+                        <button id="transIncomes" class="btn" href="">Доход</button>
+                        <button id="transExpense" class="btn" href="">Разход</button>
+                        <button id="transSavings" class="btn" href="">Спестяване</button>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="date" class="control-label">Дата: </label>
+                        <div class="select-date  has-feedback">
+                            <input type="date" name="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="control-label">Сума: </label>
+                        <div class="select-amount">
+                            <input type="number" name="number" class="form-control" placeholder="Пример: 100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="control-label">Коментар:</label>
+                        <div class="description">
+                            <textarea class="form-control " ng-maxlength="200" name="description" placeholder="Пример: Сметка за ток"></textarea>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="rigth-menu-body">
-                <div class="buttons">
-                    <a id="transIncomes" class="btn" href="">Доход</a>
-                    <a id="transExpense" class="btn" href="">Разход</a>
-                    <a id="transSavings" class="btn" href="">Спестяване</a>
-                </div>
-                <hr>
-                <div class="form-group">
-                    <label for="date" class="control-label">Дата: </label>
-                    <div class="select-date">
-                        <input type="date" name="date" class="form-control">
+            <div class="categoryView container">
+                <div class="row right-menu-header">
+                    <div class="col-10">
+                        <h4>Избери категория</h4>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="amount" class="control-label">Сума: </label>
-                    <div class="select-date">
-                        <input type="number" name="number" class="form-control">
-                    </div>
+                <div class="row">
+                    <select id="select-expense" name="expenses" data-show-icon="true">
+                        <option value=""></option>
+                        <option value="utilityBills"> &#xf2cd;&nbsp;Битови сметки</option>
+                        <option value="home"> &#xf015;&nbsp;Жилище</option>
+                        <option value="foodAndSupplies"> &#xf07a;&nbsp;Храна и консумативи</option>
+                        <option value="transport">&#xf207;&nbsp;Транспорт</option>
+                        <option value="clothesAndShoes">&#xf02b;&nbsp;Дрехи и обувки</option>
+                        <option value="personal">&#xf183;&nbsp;Лични</option>
+                        <option value="entertainment">&#xf0d0;&nbsp;Развлечения</option>
+                        <option value="eatingOut">&#xf0f5;&nbsp;Хранене навън</option>
+                        <option value="education">&#xf19d;&nbsp;Образование</option>
+                        <option value="gifts">&#xf06b;&nbsp;Подаръци</option>
+                        <option value="sports">&#xf1e3;&nbsp;Спорт/Хоби</option>
+                        <option value="travelling">&#xf0f2;&nbsp;Пътуване/Отдих</option>
+                        <option value="medical">&#xf196;&nbsp;Медицински</option>
+                        <option value="pets">&#xf1b0;&nbsp;Домашни любимци</option>
+                        <option value="other">&#xf1e5;&nbsp;Разни</option>
+                    </select>
+                    <select id="select-incomes" name="incomes">
+                        <option value=""></option>
+                        <option value="salary">&#xf0d6;&nbsp;Заплата</option>
+                        <option value="fromLastMont">&#xf1c0;&nbsp;От предния месец</option>
+                    </select>
+                    <select id="select-savings" name="savings">
+                        <option value=""></option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="description" class="control-label">Коментар:</label>
-                    <div class="description">
-                        <textarea class="form-control " ng-maxlength="200" name="description" placeholder="Пример: Сметка за ток"></textarea>
-                    </div>
-                </div>
-                <button id="btnChooseCategory" class="button button-success form-button center-block " type="button">Избери категория</button>
+                <button id="btnChooseCategory" class="button button-success form-button center-block " type="button" disabled=false>Запази плащането</button>
             </div>
+
         </div>
     </div>
 
@@ -180,7 +219,7 @@
                 <div class="col-md-5">
                     <div id="diagram">
                         <canvas id="incomeChart" width="450px" height="500px"></canvas>
-                        </div>
+                    </div>
                 </div>
                 <div class="col-md-7">
                     <div id="buttons">
@@ -197,7 +236,7 @@
                                 </div>
                                 <div class="col-lg-4 text-color hide-content-main">
                                     <div class="col-lg-6">получени: </div>
-                                    <div class="col-lg-6 text-right price-bold">2000.00</div>
+                                    <div class="col-lg-6 text-right price-bold">0.00</div>
                                     <div class="col-lg-6">планирани: </div>
                                     <div class="col-lg-6 text-right income-aggregate">0.00</div>
                                 </div>
@@ -208,8 +247,8 @@
                                     <h4><i class="fa fa-money" aria-hidden="true"></i> &nbsp;Заплата</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -218,8 +257,8 @@
                                     <h4><i class="fa fa-database" aria-hidden="true"></i> &nbsp;От предния месец</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -231,7 +270,7 @@
                                 </div>
                                 <div class="col-lg-4 text-color hide-content-main">
                                     <div class="col-lg-6">получени: </div>
-                                    <div class="col-lg-6 text-right price-bold">2000.00</div>
+                                    <div class="col-lg-6 text-right price-bold">0.00</div>
                                     <div class="col-lg-6">похарчени: </div>
                                     <div class="col-lg-6 text-right expenses-aggregate">0.00</div>
                                 </div>
@@ -241,8 +280,8 @@
                                     <h4><i class="fa fa-bath" aria-hidden="true"></i> &nbsp;Битови сметки</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content ">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -251,8 +290,8 @@
                                     <h4><i class="fa fa-home" aria-hidden="true"></i> &nbsp;Жилище</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -261,8 +300,8 @@
                                     <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp;Храна и консумативи</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -271,8 +310,8 @@
                                     <h4><i class="fa fa-bus" aria-hidden="true"></i> &nbsp;Транспорт</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -281,8 +320,8 @@
                                     <h4><i class="fa fa-tag" aria-hidden="true"></i> &nbsp;Дрехи и обувки</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -291,8 +330,8 @@
                                     <h4><i class="fa fa-male" aria-hidden="true"></i> &nbsp;Лични</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -301,8 +340,8 @@
                                     <h4><i class="fa fa-magic" aria-hidden="true"></i> &nbsp;Развлечения</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -311,8 +350,8 @@
                                     <h4><i class="fa fa-cutlery" aria-hidden="true"></i> &nbsp;Хранене навън </h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -321,8 +360,8 @@
                                     <h4><i class="fa fa-graduation-cap" aria-hidden="true"></i> &nbsp;Образование</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -331,8 +370,8 @@
                                     <h4><i class="fa fa-gift" aria-hidden="true"></i> &nbsp;Подаръци</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -341,8 +380,8 @@
                                     <h4><i class="fa fa-futbol-o" aria-hidden="true"></i> &nbsp;Спорт/Хоби</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -351,8 +390,8 @@
                                     <h4><i class="fa fa-suitcase" aria-hidden="true"></i> &nbsp;Пътуване/Отдих</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -361,8 +400,8 @@
                                     <h4><i class="fa fa-plus-square" aria-hidden="true"></i> &nbsp;Медицински</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -371,8 +410,8 @@
                                     <h4><i class="fa fa-paw" aria-hidden="true"></i> &nbsp;Домашни любимци</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -381,8 +420,8 @@
                                     <h4><i class="fa fa-binoculars" aria-hidden="true"></i> &nbsp;Разни</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">2000.00</div>
-                                    <div class="col-lg-12 text-right">1700.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -444,11 +483,11 @@
                         <div class="col-lg-4 text-color hide-content-main">
                             <div>
                                 <div class="col-lg-6">получени: </div>
-                                <div class="col-lg-6 text-right price-bold">2000.00</div>
+                                <div class="col-lg-6 text-right price-bold">0.00</div>
                             </div>
                             <div>
                                 <div class="col-lg-6">похарчени: </div>
-                                <div class="col-lg-6 text-right">1700.00</div>
+                                <div class="col-lg-6 text-right">0.00</div>
                             </div>
                         </div>
                     </div>
@@ -458,10 +497,10 @@
                         </div>
                         <div class="col-lg-4 text-color">
                             <div>
-                                <div class="col-lg-12 text-right price-bold">2000.00</div>
+                                <div class="col-lg-12 text-right price-bold">0.00</div>
                             </div>
                             <div>
-                                <div class="col-lg-12 text-right">1700.00</div>
+                                <div class="col-lg-12 text-right">0.00</div>
                             </div>
                         </div>
                     </div>
@@ -519,11 +558,11 @@
                         <div class="col-lg-4 text-color hide-content-main">
                             <div>
                                 <div class="col-lg-6">налични: </div>
-                                <div class="col-lg-6 text-right price-bold">2000.00</div>
+                                <div class="col-lg-6 text-right price-bold">0.00</div>
                             </div>
                             <div>
                                 <div class="col-lg-6">цел: </div>
-                                <div class="col-lg-6 text-right">1700.00</div>
+                                <div class="col-lg-6 text-right">0.00</div>
                             </div>
                         </div>
                     </div>
@@ -533,10 +572,10 @@
                         </div>
                         <div class="col-lg-4 text-color">
                             <div>
-                                <div class="col-lg-12 text-right price-bold">2000.00</div>
+                                <div class="col-lg-12 text-right price-bold">0.00</div>
                             </div>
                             <div>
-                                <div class="col-lg-12 text-right">1700.00</div>
+                                <div class="col-lg-12 text-right">0.00</div>
                             </div>
                         </div>
                     </div>
@@ -647,10 +686,10 @@
 
     <!-- Theme JavaScript -->
     <script src="js/budget.js"></script>
-    <script src="js/budgetTable.js"></script>
+    <script src="js/budgetTableController.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!--Library for Charts-->
-    <script src="js/Chart.js"></script>
+    <script src="vendor/chart/Chart.js"></script>
     <script src="js/charts.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>

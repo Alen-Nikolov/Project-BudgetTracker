@@ -275,6 +275,8 @@ h6 {
         padding-bottom: 5px;
     }
 }
+
+
 /*
 @media (min-width: 768px) {
     .navbar-custom.affix {
@@ -324,12 +326,14 @@ h6 {
     right: 40px;
 }
 
-.btn {
+.buttons .btn {
     padding: 10px 14px;
     font-size: 16px;
+    background-color: #fff;
+    color: black;
 }
 
-.btn:hover {
+.buttons .btn:focus {
     background-color: #fed136;
     color: #fff;
 }
@@ -347,7 +351,7 @@ h6 {
 
 .button-success {
     background-color: #3cb878;
-    margin-top: 20px;
+    margin-top: 40px;
     width: 100%;
     height: 44px;
     line-height: 44px;
@@ -356,6 +360,21 @@ h6 {
     border: 0;
     text-align: center;
     font-size: 1.2em;
+}
+
+select {
+    font-family: 'FontAwesome', 'Second Font name';
+    margin: auto;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    font-size: 1.2em;
+    box-sizing: border-box;
+}
+
+#select-incomes,
+#select-savings {
+    display: none;
 }
 
 header {

@@ -3,23 +3,22 @@ var aggregateDivs = document.querySelectorAll('.hide-content-main>div:last-of-ty
 
 aggregateDivs = Array.prototype.slice.call(aggregateDivs, 0, 3);
 
-function reWriteTheChart(data){
+function reWriteTheChart(data) {
     Chart.defaults.global.legend.display = false;
     Chart.defaults.scale.ticks.beginAtZero = true;
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ["планирани доходи", "планирани разходи", "планирани спестявания"],
-            datasets: [
-                {
-                    data: data,
-                    backgroundColor: [
-                        '#DCFAC0',
-                        '#FFCDB2',
-                        '#AAE0D7'
-                    ],
+            datasets: [{
+                data: data,
+                backgroundColor: [
+                    '#DCFAC0',
+                    '#FFCDB2',
+                    '#AAE0D7'
+                ],
 
-                }]
+            }]
         },
         options: {
             scales: {
@@ -33,4 +32,3 @@ function reWriteTheChart(data){
         }
     });
 }
-
