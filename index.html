@@ -54,36 +54,76 @@
         <div class="close-area col-8"></div>
 
         <div class="right-menu col-12 col-sm-12 col-lg-4">
-            <div class="right-menu-header">
-                <h4>Добави</h4><span class="close-icon"></span>
+            <div class="inputView">
+                <div class="right-menu-header">
+                    <h4>Добави</h4><span class="close-icon"></span>
+                </div>
+
+                <div class="rigth-menu-body">
+                    <div class="buttons">
+                        <button id="transIncomes" class="btn" href="">Доход</button>
+                        <button id="transExpense" class="btn" href="">Разход</button>
+                        <button id="transSavings" class="btn" href="">Спестяване</button>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="date" class="control-label">Дата: </label>
+                        <div class="select-date  has-feedback">
+                            <input type="date" name="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="control-label">Сума: </label>
+                        <div class="select-amount">
+                            <input type="number" name="number" class="form-control" placeholder="Пример: 100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="control-label">Коментар:</label>
+                        <div class="description">
+                            <textarea class="form-control " ng-maxlength="200" name="description" placeholder="Пример: Сметка за ток"></textarea>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="rigth-menu-body">
-                <div class="buttons">
-                    <a id="transIncomes" class="btn" href="">Доход</a>
-                    <a id="transExpense" class="btn" href="">Разход</a>
-                    <a id="transSavings" class="btn" href="">Спестяване</a>
-                </div>
-                <hr>
-                <div class="form-group">
-                    <label for="date" class="control-label">Дата: </label>
-                    <div class="select-date">
-                        <input type="date" id="datePicker" name="date" class="form-control">
+            <div class="categoryView container">
+                <div class="row right-menu-header">
+                    <div class="col-10">
+                        <h4>Избери категория</h4>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="amount" class="control-label">Сума: </label>
-                    <div class="select-date">
-                        <input type="number" name="number" class="form-control">
-                    </div>
+                <div class="row">
+                    <select id="select-expense" name="expenses" data-show-icon="true">
+                        <option value=""></option>
+                        <option value="utilityBills"> &#xf2cd;&nbsp;Битови сметки</option>
+                        <option value="home"> &#xf015;&nbsp;Жилище</option>
+                        <option value="foodAndSupplies"> &#xf07a;&nbsp;Храна и консумативи</option>
+                        <option value="transport">&#xf207;&nbsp;Транспорт</option>
+                        <option value="clothesAndShoes">&#xf02b;&nbsp;Дрехи и обувки</option>
+                        <option value="personal">&#xf183;&nbsp;Лични</option>
+                        <option value="entertainment">&#xf0d0;&nbsp;Развлечения</option>
+                        <option value="eatingOut">&#xf0f5;&nbsp;Хранене навън</option>
+                        <option value="education">&#xf19d;&nbsp;Образование</option>
+                        <option value="gifts">&#xf06b;&nbsp;Подаръци</option>
+                        <option value="sports">&#xf1e3;&nbsp;Спорт/Хоби</option>
+                        <option value="travelling">&#xf0f2;&nbsp;Пътуване/Отдих</option>
+                        <option value="medical">&#xf196;&nbsp;Медицински</option>
+                        <option value="pets">&#xf1b0;&nbsp;Домашни любимци</option>
+                        <option value="other">&#xf1e5;&nbsp;Разни</option>
+                    </select>
+                    <select id="select-incomes" name="incomes">
+                        <option value=""></option>
+                        <option value="salary">&#xf0d6;&nbsp;Заплата</option>
+                        <option value="fromLastMont">&#xf1c0;&nbsp;От предния месец</option>
+                    </select>
+                    <select id="select-savings" name="savings">
+                        <option value=""></option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="description" class="control-label">Коментар:</label>
-                    <div class="description">
-                        <textarea class="form-control " ng-maxlength="200" name="description" placeholder="Пример: Сметка за ток"></textarea>
-                    </div>
-                </div>
-                <button id="btnChooseCategory" class="button button-success form-button center-block " type="button">Избери категория</button>
+                <button id="btnChooseCategory" class="button button-success form-button center-block " type="button" disabled=false>Запази плащането</button>
             </div>
+
         </div>
     </div>
 
@@ -180,7 +220,7 @@
                 <div class="col-md-5">
                     <div id="diagram">
                         <canvas id="incomeChart" width="450px" height="500px"></canvas>
-                        </div>
+                    </div>
                 </div>
                 <div class="col-md-7">
                     <div id="buttons">
@@ -647,10 +687,10 @@
 
     <!-- Theme JavaScript -->
     <script src="js/budget.js"></script>
-    <script src="js/budgetTable.js"></script>
+    <script src="js/budgetTableController.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!--Library for Charts-->
-    <script src="js/Chart.js"></script>
+    <script src="vendor/chart/Chart.js"></script>
     <script src="js/charts.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>

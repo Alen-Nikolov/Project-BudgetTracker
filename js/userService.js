@@ -1,10 +1,8 @@
 function User(username, password) {
     this.username = username;
     this.password = password;
-
     this.budgets = [new Budget(this, new Date())];
-    this.credits = [];
-    this.savings = [];
+
 };
 
 var userManegment = (function() {
@@ -45,14 +43,31 @@ User.prototype.addPlannedValueToBudgetExpenses = function(value, number) {
 };
 
 User.prototype.addCredit = function(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
-    this.credits.push(new Credit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate));
+    // this.budgets[0].addCredit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate)
+    this.budgets[0].credits.push(new Credit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate));
 };
 User.prototype.addSaving = function(purpose, initialAmount, desiredAmount, endDate) {
-    this.savings.push(new Saving(purpose, initialAmount, desiredAmount, endDate));
+    this.budgets[0].savings.push(new Saving(purpose, initialAmount, desiredAmount, endDate));
 };
 
 User.prototype.addTransaction = function(date, amount, comment, category, type) {
 
+
+};
+User.prototype.createNewBudget = function() {
+    var newBudget = new Budget(this, new Date());
+    newBudget.credits = this.budgets[length - 1].credits;
+    newBudget.savings = this.budgets[length - 1].savings;
+
+    for (var index = 0; index < newBudget.credits.length; index++) {
+        newBudget.credits[index].planned = 0;
+        newBudget.credits[index].received = 0;
+    };
+    for (var index = 0; index < newBudget.savings.length; index++) {
+        newBudget.savings[index].planned = 0;
+        newBudget.savings[index].received = 0;
+    };
+    this.budgets.push(newBudget);
 
 };
 User.prototype.copyBudget = function() {
@@ -68,7 +83,7 @@ function Budget(user, date) {
         planned: 0,
         received: 0
     }, {
-        name: "mdmanddn",
+        name: "fromLastMonth",
         planned: 0,
         received: 0
     }];
@@ -134,7 +149,8 @@ function Budget(user, date) {
         planned: 0,
         received: 0
     }];
-
+    this.credits = [];
+    this.savings = [];
     this.transactions = [];
 };
 
@@ -145,6 +161,8 @@ function Credit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
     this.feesLeftToPay = feesLeftToPay;
     this.unpaidFees = unpaidFees;
     this.maturityDate = maturityDate;
+    this.planned = monthFee;
+    this.received = 0;
 };
 
 function Saving(purpose, initialAmount, desiredAmount, endDate) {
@@ -153,6 +171,8 @@ function Saving(purpose, initialAmount, desiredAmount, endDate) {
     this.initialAmount = initialAmount;
     this.desiredAmount = desiredAmount;
     this.endDate = endDate;
+    this.planned = 0;
+    this.received = 0;
 
     this.monthlyPayment = this.calculateMonthlyPayment();
 };

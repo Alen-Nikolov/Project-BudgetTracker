@@ -1,6 +1,6 @@
 (function($) {
     "use strict"; // Start of use strict
-      // Highlight the top nav as scrolling occurs
+    // Highlight the top nav as scrolling occurs
     $('body').scrollspy({
         target: '.navbar-fixed-top',
         offset: 51
@@ -26,7 +26,6 @@
         event.preventDefault();
     });
 
-
 })(jQuery); // End of use strict
 
 //Button for transactions
@@ -38,23 +37,24 @@
     var menuRightCredit = document.getElementById("right-menu-wrapper-credit");
     var savingsButton = document.getElementById("addSavings");
     var menuRightSavings = document.getElementById("right-menu-wrapper-savings");
+    var buttons = document.querySelectorAll(".buttons button");
+    var inputDate = document.querySelector('.form-group .select-date input');
+    var inputAmount = document.querySelector('.form-group .select-amount input');
+
 
     transButton.addEventListener("click", function() {
         menuRightPayment.style.display = "flex";
+        buttons[1].focus();
+        inputDate.valueAsDate = new Date();
     }, false);
+
     creditButton.addEventListener("click", function() {
         menuRightCredit.style.display = "flex";
     }, false);
+
     savingsButton.addEventListener("click", function() {
         menuRightSavings.style.display = "flex";
     }, false);
-
-    function closeMenu(event) {
-        menuRightPayment.style.display = "none";
-        menuRightCredit.style.display = "none";
-        menuRightSavings.style.display = "none";
-        event.preventDefault()
-    };
 
     var closeIcon = document.querySelectorAll(".close-icon");
     var closeArea = document.querySelectorAll(".close-area");
@@ -66,14 +66,56 @@
         elem.addEventListener("click", closeMenu, false);
     });
 
-    var buttons = document.querySelectorAll(".buttons a");
+    function closeMenu(event) {
+        menuRightPayment.style.display = "none";
+        menuRightCredit.style.display = "none";
+        menuRightSavings.style.display = "none";
+        event.preventDefault()
+    };
+
+    //Changing the transaction type
+    var selectExpense = document.getElementById("select-expense");
+    var selectIcomes = document.getElementById("select-incomes");
+    var selectSavings = document.getElementById("select-savings");
+    buttons[0].addEventListener("click", function(event) {
+        event = event || window.event;
+        selectExpense.style.display = "none";
+        selectIcomes.style.display = "block";
+        selectSavings.style.display = "none";
+        event.preventDefault();
+
+    });
+    buttons[1].addEventListener("click", function(event) {
+        event = event || window.event;
+        selectExpense.style.display = "block";
+        selectIcomes.style.display = "none";
+        selectSavings.style.display = "none";
+        event.preventDefault();
+
+    });
+    buttons[2].addEventListener("click", function(event) {
+        event = event || window.event;
+        selectExpense.style.display = "none";
+        selectIcomes.style.display = "none";
+        selectSavings.style.display = "block";
+        event.preventDefault();
+
+    });
     Array.prototype.forEach.call(buttons, function(elem) {
         elem.addEventListener("click", function(event) {
-            event = event || window.event;
-            event.preventDefault();
+
         }, false);
+    });
+    var btnChooseCategory = document.getElementById("btnChooseCategory");
+    inputAmount.addEventListener("keyup", function() {
+        if (inputAmount.value > 0 && inputDate.value !== "") {
+            btnChooseCategory.removeAttribute("disabled");
+        } else {
+            btnChooseCategory.setAttribute("disabled", "disabled");
+        }
+    }, false);
 
-    })
-
-
+    btnChooseCategory.addEventListener("click", function() {
+        console.log("banani")
+    }, false)
 })();
