@@ -82,6 +82,8 @@
         selectExpense.style.display = "none";
         selectIcomes.style.display = "block";
         selectSavings.style.display = "none";
+        document.querySelector(".radioBtns").style.display = "none";
+        document.querySelector(".description textarea[name=description]").placeholder = "Пример: Месечен аванс";
         event.preventDefault();
 
     });
@@ -90,6 +92,8 @@
         selectExpense.style.display = "block";
         selectIcomes.style.display = "none";
         selectSavings.style.display = "none";
+        document.querySelector(".radioBtns").style.display = "none";
+        document.querySelector(".description textarea[name=description]").placeholder = "Пример: Сметка за тока";
         event.preventDefault();
 
     });
@@ -98,6 +102,8 @@
         selectExpense.style.display = "none";
         selectIcomes.style.display = "none";
         selectSavings.style.display = "block";
+        document.querySelector(".radioBtns").style.display = "flex";
+        document.querySelector(".description textarea[name=description]").placeholder = "Пример: Рожден ден";
         event.preventDefault();
 
     });
