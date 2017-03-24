@@ -35,12 +35,41 @@ var userManegment = (function() {
         }
     }
 })();
+
+
+// --------------------------------------USER METHODS--------------------------------------------
+
+//-------------------------planned value --------------------
 User.prototype.addPlannedValueToBudgetIncomes = function(value, number) {
-    this.budgets[0].incomes[number].planned = value;
+    this.budgets[0].addPlannedValueToIncomes(value, number);
 };
 User.prototype.addPlannedValueToBudgetExpenses = function(value, number) {
+    // this.budgets[0].addPlannedValueToExpenses(value, number);
     this.budgets[0].expenses[number].planned = value;
 };
+User.prototype.addPlannedValueToBudgetSavings = function(value, number) {
+    this.budgets[0].addPlannedValueToSavings(value, number);
+    //     this.budgets[0].expenses[number].planned = value;
+};
+User.prototype.addPlannedValueToBudgetCredits = function(value, number) {
+    this.budgets[0].addPlannedValueToCredits(value, number);
+    // this.budgets[0].expenses[number].planned = value;
+};
+
+//-------------------------received value --------------------
+// User.prototype.addReceivedValueToBudgetIncomes = function(value, number) {
+//     this.budgets[0].addPlannedValueToIncomes(value, number);
+// };
+// User.prototype.addReceivedValueToBudgetExpenses = function(value, number) {
+//     this.budgets[0].addPlannedValueToExpenses(value, number);
+// };
+// User.prototype.addReceivedValueToBudgetSavings = function(value, number) {
+//     this.budgets[0].addPlannedValueToSavings(value, number);
+// };
+// User.prototype.addReceivedValueToBudgetCredits = function(value, number) {
+//     this.budgets[0].addPlannedValueToCredits(value, number);
+// };
+
 
 User.prototype.addCredit = function(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
     // this.budgets[0].addCredit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate)
@@ -50,30 +79,36 @@ User.prototype.addSaving = function(purpose, initialAmount, desiredAmount, endDa
     this.budgets[0].savings.push(new Saving(purpose, initialAmount, desiredAmount, endDate));
 };
 
-User.prototype.addTransaction = function(date, amount, comment, category, type) {
-
+User.prototype.addTransaction = function(date, amount, comment, category) {
+    this.budgets[0].transactions.push(new Transaction(date, amount, comment, category));
 
 };
 User.prototype.createNewBudget = function() {
     var newBudget = new Budget(this, new Date());
-    newBudget.credits = this.budgets[length - 1].credits;
-    newBudget.savings = this.budgets[length - 1].savings;
+    newBudget.credits = this.budgets[this.budgets.length - 1].credits;
+    newBudget.savings = this.budgets[this.budgets.length - 1].savings;
 
-    for (var index = 0; index < newBudget.credits.length; index++) {
-        newBudget.credits[index].planned = 0;
-        newBudget.credits[index].received = 0;
-    };
-    for (var index = 0; index < newBudget.savings.length; index++) {
-        newBudget.savings[index].planned = 0;
-        newBudget.savings[index].received = 0;
-    };
+    function fill(array) {
+        for (var index = 0; index < array.length; index++) {
+            array[index].planned = 0;
+            array[index].initialAmount += array[index].received;
+            array[index].received = 0;
+        };
+    }
+    fill(newBudget.credits);
+    fill(newBudget.savings);
+
     this.budgets.push(newBudget);
+
 
 };
 User.prototype.copyBudget = function() {
 
 };
 
+
+
+// ---------------------------------------BUDGET CONSRUCTOR----------------------------------------
 function Budget(user, date) {
     this.user = user;
     this.date = date;
@@ -150,10 +185,28 @@ function Budget(user, date) {
         received: 0
     }];
     this.credits = [];
-    this.savings = [];
+    this.savings = [{ name: "unexpectedExpenses", planned: 0, received: 0 }];
     this.transactions = [];
 };
+Budget.prototype.addPlannedValueToExpenses = function(value, number) {
+    this.expenses[number].planned = value;
+};
+Budget.prototype.addPlannedValueToIncomes = function(value, number) {
+    this.incomes[number].planned = value;
+};
+Budget.prototype.addPlannedValueToSavings = function(value, number) {
+    this.savings[number].planned = value;
+};
+Budget.prototype.addPlannedValueToCredits = function(value, number) {
+    this.credits[number].planned = value;
+};
+Budget.prototype.addTransaction = function(transaction) {
+    this.transactions.push(transaction);
+    this[transaction.category].received += transaction.amount;
+};
 
+
+// ----------------------------------------CREDIT CONSRUCTOR---------------------------------------
 
 function Credit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
     this.bankName = bankName;
@@ -164,6 +217,7 @@ function Credit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
     this.planned = monthFee;
     this.received = 0;
 };
+// ----------------------------------------SAVINGS CONSRUCTOR---------------------------------------
 
 function Saving(purpose, initialAmount, desiredAmount, endDate) {
     this.startDate = new Date();
@@ -188,6 +242,7 @@ Saving.prototype.calculateMonthlyPayment = function() {
     return Math.round((this.desiredAmount - this.initialAmount) / months);
 
 };
+// ----------------------------------------TRANSACTION CONSRUCTOR---------------------------------------
 
 function Transaction(date, amount, comment, category) {
     this.date = date;
@@ -197,5 +252,7 @@ function Transaction(date, amount, comment, category) {
 };
 
 
-var sav = new Savings("Travelling", 100, 5000, new Date("July, 2018 01:15:00"));
-userManegment.displayUsers()
+// var sav = new Saving("Travelling", 100, 5000, new Date("July, 2018 01:15:00"));
+// var user = new User("s", "1235");
+// user.createNewBudget();
+// console.log(user.budgets[0])

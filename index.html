@@ -56,7 +56,8 @@
         <div class="right-menu col-12 col-sm-12 col-lg-4">
             <div class="inputView">
                 <div class="right-menu-header">
-                    <h4>Добави</h4><span class="close-icon"></span>
+                    <h4>Добави</h4>
+                    <p class="close-icon"></p>
                 </div>
 
                 <div class="rigth-menu-body">
@@ -71,43 +72,48 @@
                         <div class="radioBtns has-feedback">
                             <div class="in">
                                 <label for="in" class="control-label">Внасяне: </label>
-                                <input id="in" type="radio" name="radio" value="in">
+                                <input id="in" type="radio" name="radio" value="in" checked="checked">
                             </div>
                             <div class="out">
                                 <label for="out" class="control-label">Теглене: </label>
                                 <input id="out" type="radio" name="radio" value="out">
+                                <span class="hidden-span">Полето 'Внасяне/Теглене' е задължително.</span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="date" class="control-label">Дата: </label>
                         <div class="select-date  has-feedback">
-                            <input type="date" name="date" class="form-control">
+                            <input type="date" name="date" class="form-control" required>
+                            <span class="hidden-span">Полето 'Дата' е задължително.</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="amount" class="control-label">Сума: </label>
                         <div class="select-amount">
-                            <input type="number" name="amount" class="form-control" placeholder="Пример: 100">
+                            <input type="text" name="amount" min="0" class="form-control" placeholder="Пример: 100" required onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || (event.charCode==46)'>
+                            <span class="hidden-span">Полето 'Сума' е задължително.</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="description" class="control-label">Коментар:</label>
                         <div class="description">
                             <textarea class="form-control " ng-maxlength="200" name="description" placeholder="Пример: Сметка за ток"></textarea>
+                            <span class="hidden-span">Полето 'Коментар' е задължително.</span>
                         </div>
                     </div>
 
                 </div>
             </div>
-            <div class="categoryView ">
+            <div class="categoryView">
                 <div class="row right-menu-header">
                     <div class="col-10">
-                        <h4>Избери категория</h4>
+                        <h4 class="padding">Избери категория</h4>
+
                     </div>
                 </div>
                 <div class="row">
-                    <select id="select-expense" name="expenses" data-show-icon="true">
+                    <select id="select-expense" class="" name="expenses" data-show-icon="true">
                         <option value=""></option>
                         <option value="utilityBills"> &#xf2cd;&nbsp;Битови сметки</option>
                         <option value="home"> &#xf015;&nbsp;Жилище</option>
@@ -125,16 +131,18 @@
                         <option value="pets">&#xf1b0;&nbsp;Домашни любимци</option>
                         <option value="other">&#xf1e5;&nbsp;Разни</option>
                     </select>
-                    <select id="select-incomes" name="incomes">
+                    <select id="select-incomes" class="" name="incomes">
                         <option value=""></option>
                         <option value="salary">&#xf0d6;&nbsp;Заплата</option>
                         <option value="fromLastMont">&#xf1c0;&nbsp;От предния месец</option>
                     </select>
                     <select id="select-savings" name="savings">
                         <option value=""></option>
+                        <option value="unexpectedExpense">&#xf200;&nbsp;Непредвидени разходи</option>
                     </select>
                 </div>
-                <button id="btnChooseCategory" class="button button-success form-button center-block " type="button" disabled=false>Запази плащането</button>
+                <span id="span-category" class="hidden">Полето 'Избери категория' е задължително.</span>
+                <button id="btnSaveChanges" class="button button-success form-button center-block " type="button">Запази плащането</button>
             </div>
 
         </div>

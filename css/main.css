@@ -362,10 +362,23 @@ h6 {
     font-size: 1.2em;
 }
 
+.padding {
+    padding-left: 20px;
+}
+
+.visible {
+    display: block;
+    color: red;
+}
+
+.hidden-span {
+    display: none;
+}
+
 select {
     font-family: 'FontAwesome', 'Second Font name';
-    margin: auto;
-    width: 100%;
+    margin-left: 20px;
+    width: 90%;
     height: auto;
     padding: 5px;
     font-size: 1.2em;
