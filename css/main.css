@@ -377,6 +377,20 @@ select {
     display: none;
 }
 
+.radioBtns {
+    display: none;
+    justify-content: space-around;
+}
+
+.radioBtns label {
+    margin-right: 10px;
+}
+
+.radioBtns input {
+    transform: scale(1.5);
+    padding: 5px;
+}
+
 header {
     background-image: url('../img/finance.jpg');
     background-repeat: no-repeat;
