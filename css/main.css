@@ -371,6 +371,11 @@ h6 {
     color: red;
 }
 
+.buttons .selected-btn {
+    background-color: #fec503;
+    color: white;
+}
+
 .hidden-span {
     display: none;
 }

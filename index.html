@@ -62,9 +62,9 @@
 
                 <div class="rigth-menu-body">
                     <div class="buttons">
-                        <button id="transIncomes" class="btn" href="">Доход</button>
-                        <button id="transExpense" class="btn" href="">Разход</button>
-                        <button id="transSavings" class="btn" href="">Спестяване</button>
+                        <button id="transIncomes" class="btn" value="incomes">Доход</button>
+                        <button id="transExpense" class="btn selected-btn" value="expenses">Разход</button>
+                        <button id="transSavings" class="btn" value="savings">Спестяване</button>
                     </div>
                     <hr>
                     <div class="form-group">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <select id="select-expense" class="" name="expenses" data-show-icon="true">
+                    <select id="select-expenses" class="" name="expenses" data-show-icon="true">
                         <option value=""></option>
                         <option value="utilityBills"> &#xf2cd;&nbsp;Битови сметки</option>
                         <option value="home"> &#xf015;&nbsp;Жилище</option>
@@ -141,12 +141,8 @@
                         <option value="unexpectedExpense">&#xf200;&nbsp;Непредвидени разходи</option>
                     </select>
                 </div>
-<<<<<<< HEAD
                 <span id="span-category" class="hidden">Полето 'Избери категория' е задължително.</span>
                 <button id="btnSaveChanges" class="button button-success form-button center-block " type="button">Запази плащането</button>
-=======
-                <button id="btnChooseCategory" class="button button-success form-button center-block" type="button" disabled=false>Запази плащането</button>
->>>>>>> origin/master
             </div>
 
         </div>
