@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
     "use strict"; // Start of use strict
     // Highlight the top nav as scrolling occurs
     $('body').scrollspy({
@@ -13,11 +13,11 @@
     });
 
     // Closes the Responsive Menu on Menu Item Click
-    $('.navbar-collapse ul li a').click(function() {
+    $('.navbar-collapse ul li a').click(function () {
         $('.navbar-toggle:visible').click();
     });
 
-    $('a.page-scroll').bind('click', function(event) {
+    $('a.page-scroll').bind('click', function (event) {
         var $anchor = $(this);
         $('html, body').stop().animate({
             scrollTop: ($($anchor.attr('href')).offset().top - 50)
@@ -28,7 +28,7 @@
 })(jQuery); // End of use strict
 
 //Button for  new transactions, new credit and new saving 
-(function() {
+(function () {
     var transButton = document.getElementById("transBtn");
     var menuRightTrans = document.getElementById("right-menu-wrapper-expense");
     var creditButton = document.getElementById("addCredit");
@@ -41,26 +41,26 @@
     var textareaComment = document.querySelector(".description textarea");
 
 
-    transButton.addEventListener("click", function() {
+    transButton.addEventListener("click", function () {
         menuRightTrans.style.display = "flex";
         inputDate.valueAsDate = new Date();
     }, false);
 
-    creditButton.addEventListener("click", function() {
+    creditButton.addEventListener("click", function () {
         menuRightCredit.style.display = "flex";
     }, false);
 
-    savingsButton.addEventListener("click", function() {
+    savingsButton.addEventListener("click", function () {
         menuRightSavings.style.display = "flex";
     }, false);
 
     var closeIcon = document.querySelectorAll(".close-icon");
     var closeArea = document.querySelectorAll(".close-area");
 
-    Array.prototype.forEach.call(closeIcon, function(elem) {
+    Array.prototype.forEach.call(closeIcon, function (elem) {
         elem.addEventListener("click", closeMenu, false);
     });
-    Array.prototype.forEach.call(closeArea, function(elem) {
+    Array.prototype.forEach.call(closeArea, function (elem) {
         elem.addEventListener("click", closeMenu, false);
     });
 
@@ -78,10 +78,7 @@
     var btnSaveChanges = document.getElementById("btnSaveChanges");
     var spans = document.querySelectorAll("#right-menu-wrapper-expense span");
     var inputRadio = document.querySelectorAll(".radioBtns input[type=radio]");
-    console.log(inputRadio)
-    console.log(inputRadio[0].value)
-    console.log(inputRadio[0].checked == "")
-    console.log(inputRadio[1].checked == "")
+
 
     function setDisplay(expense, income, saving) {
         selectExpense.style.display = expense;
@@ -93,15 +90,15 @@
     var selectedButn = buttons[1];
 
     //---------------------------ДОХОДИ----------------------------------------
-    buttons[0].addEventListener("click", function(event) {
+    buttons[0].addEventListener("click", function (event) {
         event = event || window.event;
         seletedCategory = "";
         selectedButn = this;
-        Array.prototype.forEach.call(buttons, function(elem) {
+        Array.prototype.forEach.call(buttons, function (elem) {
             elem.classList.remove("selected-btn");
         });
         this.classList.add("selected-btn");
-        Array.prototype.forEach.call(spans, function(elem) {
+        Array.prototype.forEach.call(spans, function (elem) {
             elem.setAttribute("class", "hidden");
         });
         setDisplay("none", "block", "none");
@@ -112,15 +109,15 @@
     });
 
     //--------------------------РАЗХОДИ-----------------------------------------
-    buttons[1].addEventListener("click", function(event) {
+    buttons[1].addEventListener("click", function (event) {
         event = event || window.event;
         seletedCategory = "";
         selectedButn = this;
-        Array.prototype.forEach.call(buttons, function(elem) {
+        Array.prototype.forEach.call(buttons, function (elem) {
             elem.classList.remove("selected-btn");
         });
         this.classList.add("selected-btn");
-        Array.prototype.forEach.call(spans, function(elem) {
+        Array.prototype.forEach.call(spans, function (elem) {
             elem.setAttribute("class", "hidden");
         });
         setDisplay("block", "none", "none");
@@ -130,15 +127,15 @@
     });
 
     //--------------------------СПЕСТЯВАНИЯ-----------------------------------------
-    buttons[2].addEventListener("click", function(event) {
+    buttons[2].addEventListener("click", function (event) {
         event = event || window.event;
         seletedCategory = "";
         selectedButn = this;
-        Array.prototype.forEach.call(buttons, function(elem) {
+        Array.prototype.forEach.call(buttons, function (elem) {
             elem.classList.remove("selected-btn");
         });
         this.classList.add("selected-btn");
-        Array.prototype.forEach.call(spans, function(elem) {
+        Array.prototype.forEach.call(spans, function (elem) {
             elem.setAttribute("class", "hidden");
         });
         setDisplay("none", "none", "block");
@@ -151,17 +148,17 @@
 
 
     var allSelects = document.querySelectorAll(".categoryView select");
-    Array.prototype.forEach.call(allSelects, function(elem) {
-        elem.addEventListener("change", function() {
+    Array.prototype.forEach.call(allSelects, function (elem) {
+        elem.addEventListener("change", function () {
             seletedCategory = elem.value;
         }, false);
     });
 
-    var allReceivedValueInBudgetTableExpense = document.querySelectorAll("#expense .price-bold");
-    var allReceivedValueInBudgetTableIncome = document.querySelectorAll("#income .price-bold");
-    var allReceivedValueInBudgetTableSaving = document.querySelectorAll("#bugdetSavings .price-bold");
+    var allReceivedValueInBudgetTableExpense = document.querySelectorAll("#expense .price-bold:first-child");
+    var allReceivedValueInBudgetTableIncome = document.querySelectorAll("#income .price-bold:first-child");
+    var allReceivedValueInBudgetTableSaving = document.querySelectorAll("#bugdetSavings .price-bold:first-child");
 
-    btnSaveChanges.addEventListener("click", function(event) {
+    btnSaveChanges.addEventListener("click", function (event) {
         var isValid = true;
         // console.log("banani")
         // console.log(selectedButn)
@@ -193,13 +190,35 @@
             currentUser.addTransaction(transaction);
             // console.log(inputAmount.value)
         }
+        function drawBudgetTable() {
+            //drawing the incomes
+            var sumIncomes = 0;
+            var aggregateIncomeBold = document.querySelector("#income .price-bold");
+            for (var index = 0; index < allReceivedValueInBudgetTableIncome.length; index++) {
+                allReceivedValueInBudgetTableIncome[index].innerHTML = currentUser.budgets[0].incomes[index].received.toFixed(2);
+                sumIncomes += Number(currentUser.budgets[0].incomes[index].received.toFixed(2));
+                aggregateIncomeBold.innerHTML = sumIncomes.toFixed(2);
+            }
 
+            //drawing the expenses
+            var sumExpenses = 0;
+            var aggregateExpenseBold = document.querySelector("#expense .price-bold");
+            for (var index = 0; index < allReceivedValueInBudgetTableExpense.length; index++) {
+                allReceivedValueInBudgetTableExpense[index].innerHTML = currentUser.budgets[0].expenses[index].received.toFixed(2);
+                sumExpenses += Number(currentUser.budgets[0].expenses[index].received.toFixed(2));
+                aggregateExpenseBold.innerHTML = sumExpenses.toFixed(2);
+            }
 
-        for (var index = 0; index < allReceivedValueInBudgetTableExpense.length - 1; index++) {
-            console.log(allReceivedValueInBudgetTableExpense[index + 1].innerHTML)
-            console.log(currentUser.getReceivedValueFromBudget(transaction.type.value)[index + 1].name)
-
+            //drawing savings
+            var aggregateSavingBold = document.querySelector("#bugdetSavings .price-bold");
+            for (var index = 0; index < allReceivedValueInBudgetTableSaving.length; index++) {
+                allReceivedValueInBudgetTableSaving[index].innerHTML = currentUser.budgets[0].savings[index].received.toFixed(2);
+                aggregateSavingBold.innerHTML = currentUser.budgets[0].savings[index].received.toFixed(2);
+            }
         }
+        drawBudgetTable();
+
+
         event.preventDefault();
 
     }, false);
