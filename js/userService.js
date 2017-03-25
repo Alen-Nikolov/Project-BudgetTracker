@@ -59,9 +59,8 @@ User.prototype.addPlannedValueToBudgetCredits = function(value, number) {
 User.prototype.getReceivedValueFromBudget = function(transType) {
     return this.budgets[0].getReceivedValue(transType);
 }
-User.prototype.addCredit = function(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
-    // this.budgets[0].addCredit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate)
-    this.budgets[0].credits.push(new Credit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate));
+User.prototype.addCredit = function(credit) {
+    this.budgets[0].addCredit(credit);
 };
 
 User.prototype.addSaving = function(savings) {
@@ -186,28 +185,44 @@ Budget.prototype.addPlannedValueToCredits = function(value, number) {
 };
 Budget.prototype.addTransaction = function(transaction) {
     this.transactions.push(transaction);
-    for (var index = 0; index < this[transaction.type.value].length; index++) {
-        if (this[transaction.type.value][index].name == transaction.categoryValue) {
-            this[transaction.type.value][index].received += Number(transaction.amount);
-            // console.log(this[transaction.type.value][index].received);
+    for (var index = 0; index < this[transaction.type].length; index++) {
+        if (this[transaction.type][index].name == transaction.categoryValue) {
+            this[transaction.type][index].received += Number(transaction.amount);
         }
     }
 };
-Budget.prototype.getReceivedValue = function(transType) {
-    return this[transType];
+
+// Budget.prototype.getReceivedValue = function(transType) {
+//     return this[transType];
+// }
+
+Budget.prototype.addCredit = function(credit) {
+    this.credits.push(credit);
 }
 
 // ----------------------------------------CREDIT CONSRUCTOR---------------------------------------
 
-function Credit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
-    this.bankName = bankName;
+function Credit(name, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
+    this.name = name;
     this.monthlyFee = monthFee;
     this.feesLeftToPay = feesLeftToPay;
     this.unpaidFees = unpaidFees;
     this.maturityDate = maturityDate;
     this.planned = monthFee;
     this.received = 0;
+    this.total = (monthFee * feesLeftToPay) + Number(unpaidFees);
 };
+Credit.prototype.leftToPay = function() {
+    return this.total - this.received;
+};
+Credit.prototype.progressInPercent = function() {
+    return (((this.total - this.leftToPay()) / this.total) * 100);
+
+}
+
+
+
+
 // ----------------------------------------SAVINGS CONSRUCTOR---------------------------------------
 
 function Saving(purpose, initialAmount, desiredAmount, endDate) {

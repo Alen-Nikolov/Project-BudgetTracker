@@ -113,22 +113,27 @@
                 </div>
                 <div class="row">
                     <select id="select-expenses" class="" name="expenses" data-show-icon="true">
-                        <option value=""></option>
-                        <option value="utilityBills"> &#xf2cd;&nbsp;Битови сметки</option>
-                        <option value="home"> &#xf015;&nbsp;Жилище</option>
-                        <option value="foodAndSupplies"> &#xf07a;&nbsp;Храна и консумативи</option>
-                        <option value="transport">&#xf207;&nbsp;Транспорт</option>
-                        <option value="clothesAndShoes">&#xf02b;&nbsp;Дрехи и обувки</option>
-                        <option value="personal">&#xf183;&nbsp;Лични</option>
-                        <option value="entertainment">&#xf0d0;&nbsp;Развлечения</option>
-                        <option value="eatingOut">&#xf0f5;&nbsp;Хранене навън</option>
-                        <option value="education">&#xf19d;&nbsp;Образование</option>
-                        <option value="gifts">&#xf06b;&nbsp;Подаръци</option>
-                        <option value="sports">&#xf1e3;&nbsp;Спорт/Хоби</option>
-                        <option value="travelling">&#xf0f2;&nbsp;Пътуване/Отдих</option>
-                        <option value="medical">&#xf196;&nbsp;Медицински</option>
-                        <option value="pets">&#xf1b0;&nbsp;Домашни любимци</option>
-                        <option value="other">&#xf1e5;&nbsp;Разни</option>
+                        <optgroup label="Разходи">
+                            <option value=""></option>
+                            <option value="utilityBills"> &#xf2cd;&nbsp;Битови сметки</option>
+                            <option value="home"> &#xf015;&nbsp;Жилище</option>
+                            <option value="foodAndSupplies"> &#xf07a;&nbsp;Храна и консумативи</option>
+                            <option value="transport">&#xf207;&nbsp;Транспорт</option>
+                            <option value="clothesAndShoes">&#xf02b;&nbsp;Дрехи и обувки</option>
+                            <option value="personal">&#xf183;&nbsp;Лични</option>
+                            <option value="entertainment">&#xf0d0;&nbsp;Развлечения</option>
+                            <option value="eatingOut">&#xf0f5;&nbsp;Хранене навън</option>
+                            <option value="education">&#xf19d;&nbsp;Образование</option>
+                            <option value="gifts">&#xf06b;&nbsp;Подаръци</option>
+                            <option value="sports">&#xf1e3;&nbsp;Спорт/Хоби</option>
+                            <option value="travelling">&#xf0f2;&nbsp;Пътуване/Отдих</option>
+                            <option value="medical">&#xf196;&nbsp;Медицински</option>
+                            <option value="pets">&#xf1b0;&nbsp;Домашни любимци</option>
+                            <option value="other">&#xf1e5;&nbsp;Разни</option>
+                        </optgroup>
+                        <optgroup label="Кредити">
+                            <option value=""></option>
+                        </optgroup>
                     </select>
                     <select id="select-incomes" class="" name="incomes">
                         <option value=""></option>
@@ -171,7 +176,7 @@
                         <a class="page-scroll" href="#credits">кредити</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#savings">спестявания</a>
+                        <a class="page-scroll" href="#mySavings">спестявания</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#transactionss">плащания</a>
@@ -452,10 +457,9 @@
                                 <div class="col-lg-8">
                                     <h3>Кредити</h3>
                                 </div>
-
                             </div>
                         </article>
-                        <article id="bugdetSavings">
+                        <article id="savings">
                             <div class="row main-row">
                                 <div class="col-lg-8">
                                     <h3 class="text-height">Принос към спестявания</h3>
@@ -463,7 +467,7 @@
                                 </div>
                                 <div class="col-lg-4 text-color hide-content-main">
                                     <div class="col-lg-6">спестени: </div>
-                                    <div class="col-lg-6 text-right price-bold">00.00</div>
+                                    <div class="col-lg-6 text-right price-bold">0.00</div>
                                     <div class="col-lg-6">планирани: </div>
                                     <div class="col-lg-6 text-right savings-aggregate">0.00</div>
                                 </div>
@@ -473,8 +477,8 @@
                                     <h4><i class="fa fa-pie-chart" aria-hidden="true"></i> &nbsp;Непредвидени разходи</h4>
                                 </div>
                                 <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold">00.00</div>
-                                    <div class="col-lg-12 text-right">00.00</div>
+                                    <div class="col-lg-12 text-right price-bold">0.00</div>
+                                    <div class="col-lg-12 text-right">0.00</div>
                                     <input type="text" class="col-lg-12 text-color text-right">
                                 </div>
                             </div>
@@ -499,28 +503,16 @@
                         <div class="col-lg-8">
                             <h3>Всички</h3>
                         </div>
-                        <div class="col-lg-4 text-color hide-content-main">
-                            <div>
-                                <div class="col-lg-6">получени: </div>
-                                <div class="col-lg-6 text-right price-bold">0.00</div>
-                            </div>
-                            <div>
-                                <div class="col-lg-6">похарчени: </div>
-                                <div class="col-lg-6 text-right">0.00</div>
-                            </div>
-                        </div>
                     </div>
                     <div class="row border-red last">
                         <div class="col-lg-8">
-                            <h4>0.00%</h4>
+                            <h4 class="allPercent">0.00%</h4>
                         </div>
                         <div class="col-lg-4 text-color">
-                            <div>
-                                <div class="col-lg-12 text-right price-bold">0.00</div>
-                            </div>
-                            <div>
-                                <div class="col-lg-12 text-right">0.00</div>
-                            </div>
+                            <div class="col-lg-8">остават: </div>
+                            <div class="col-lg-4 text-right price-bold allLeftToPay">0.00</div>
+                            <div class="col-lg-8">от общо: </div>
+                            <div class="col-lg-4 text-right allTotal">0.00</div>
                         </div>
                     </div>
                 </div>
@@ -538,29 +530,47 @@
                 <div class="rigth-menu-body">
                     <hr>
                     <div class="form-group">
-                        <label for="date" class="control-label">Име на кредита:  </label>
+                        <label for="date" class="control-label">Име на кредита:*  </label>
                         <div class="bank-name">
                             <input type="text" name="bankName" class="form-control" placeholder="Пример: Кредит в ДСК">
+                            <span class="hidden-span">Полето 'Име на кредита' е задължително.</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="amount" class="control-label">Сума: </label>
-                        <div class="amount">
-                            <input type="number" name="number" class="form-control">
+                        <label for="monthlyFee" class="control-label">Размер на месечната вноска:* </label>
+                        <div class="monthlyFee">
+                            <input type="number" name="monthlyFee" class="form-control" onkeypress='return( event.charCode >= 48 && event.charCode <= 57) || (event.charCode==46)' placeholder="Пример: 120.00">
+                            <span class="hidden-span">Полето 'Размер на месечната вноска' е задължително.</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="description" class="control-label">Коментар:</label>
-                        <div class="description">
-                            <textarea class="form-control " ng-maxlength="200" name="description" placeholder="Пример: Сметка за ток"></textarea>
+                        <label for="feesLeftToPay" class="control-label">Брой оставащи вноски:* </label>
+                        <div class="feesLeftToPay">
+                            <input type="number" name="feesLeftToPay" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Пример: 16">
+                            <span class="hidden-span">Полето 'Брой оставащи вноски' е задължително.</span>
                         </div>
                     </div>
-                    <button id="btnChooseCategory" class="button button-success form-button center-block " type="button">Избери категория</button>
+                    <div class="form-group">
+                        <label for="unpaidFees" class="control-label">Неизплатени дължими такси: </label>
+                        <div class="unpaidFees">
+                            <input type="number" name="unpaidFees" class="form-control" onkeypress='return( event.charCode >= 48 && event.charCode <= 57) || (event.charCode==46)' placeholder="Пример: 20.00">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="maturityDate" class="control-label">Падежна дата:* </label>
+                        <div class="maturityDate">
+                            <input type="text" name="maturityDate" class="form-control" onkeypress='return( event.charCode >= 48 && event.charCode <= 57) || (event.charCode==46)' placeholder="Пример: 5">
+                            <span class="hidden-span">Полето 'Падежна дата' е задължително.</span>
+                            <span class="hidden-span">Невалидна дата.</span>
+                        </div>
+                    </div>
                 </div>
+                <button id="saveChangesCredits" class="button button-success form-button center-block " type="button">Запази промените</button>
             </div>
         </div>
+        </div>
     </section>
-    <section id="savings">
+    <section id="mySavings">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center align-self-center">

@@ -7,7 +7,7 @@
     var inputsInIncome = document.querySelectorAll("#income input");
     var inputsInExpenses = document.querySelectorAll("#expense input");
 
-    var bugdetSavings = document.querySelector("#bugdetSavings input[type=text]");
+    var savings = document.querySelector("#savings input[type=text]");
     var aggregateDivs = document.querySelectorAll('.hide-content-main>div:last-of-type');
     aggregateDivs = Array.prototype.slice.call(aggregateDivs, 0, 3);
     var data = [];
@@ -40,8 +40,8 @@
             }
         }, false);
     });
-    bugdetSavings.addEventListener('keyup', function() {
-            var inputValue = Number(bugdetSavings.value);
+    savings.addEventListener('keyup', function() {
+            var inputValue = Number(savings.value);
             if (!isNaN(inputValue.toFixed(2))) {
                 $('.savings-aggregate').text(inputValue.toFixed(2));
                 data = [aggregateDivs[0].innerHTML, aggregateDivs[1].innerHTML, aggregateDivs[2].innerHTML];
