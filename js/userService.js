@@ -64,7 +64,7 @@ User.prototype.addCredit = function(credit) {
 };
 
 User.prototype.addSaving = function(savings) {
-    this.budgets[0].savings.push(savings);
+    this.budgets[0].addSaving(savings);
 };
 
 User.prototype.addTransaction = function(transaction) {
@@ -168,7 +168,7 @@ function Budget(user, date) {
         received: 0
     }];
     this.credits = [];
-    this.savings = [{ name: "unexpectedExpense", planned: 0, received: 0 }];
+    this.savings = [{ purpose: "unexpectedExpense", initialAmount: 0, desiredAmount: 0, endDate: null, planned: 0, received: 0 }];
     this.transactions = [];
 };
 Budget.prototype.addPlannedValueToExpenses = function(value, number) {
@@ -192,13 +192,12 @@ Budget.prototype.addTransaction = function(transaction) {
     }
 };
 
-// Budget.prototype.getReceivedValue = function(transType) {
-//     return this[transType];
-// }
-
 Budget.prototype.addCredit = function(credit) {
     this.credits.push(credit);
-}
+};
+Budget.prototype.addSaving = function(saving) {
+    this.savings.push(saving)
+};
 
 // ----------------------------------------CREDIT CONSRUCTOR---------------------------------------
 
@@ -217,11 +216,7 @@ Credit.prototype.leftToPay = function() {
 };
 Credit.prototype.progressInPercent = function() {
     return (((this.total - this.leftToPay()) / this.total) * 100);
-
-}
-
-
-
+};
 
 // ----------------------------------------SAVINGS CONSRUCTOR---------------------------------------
 
@@ -238,9 +233,9 @@ function Saving(purpose, initialAmount, desiredAmount, endDate) {
 };
 
 Saving.prototype.calculateMonthlyPayment = function() {
-
+    this.endDate = new Date(this.endDate);
     var months;
-    months = (this.endDate.getFullYear() - this.startDate.getFullYear()) * 12;
+    months = (this.endDate.getYear() - this.startDate.getYear()) * 12;
     months -= this.startDate.getMonth() + 1;
     months += this.endDate.getMonth();
     months <= 0 ? 0 : months;
@@ -248,6 +243,13 @@ Saving.prototype.calculateMonthlyPayment = function() {
     return Math.round((this.desiredAmount - this.initialAmount) / months);
 
 };
+Saving.prototype.getSavedMoney = function() {
+    return ((Number(this.initialAmount) + this.received));
+};
+Saving.prototype.progressInPercent = function() {
+    return (((Number(this.initialAmount) + this.received) / this.desiredAmount) * 100).toFixed(2);
+};
+
 // ----------------------------------------TRANSACTION CONSRUCTOR---------------------------------------
 
 function Transaction(date, amount, comment, type, categoryValue) {

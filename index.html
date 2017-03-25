@@ -584,34 +584,44 @@
                         <div class="col-lg-8">
                             <h3>Всички</h3>
                         </div>
-                        <div class="col-lg-4 text-color hide-content-main">
-                            <div>
-                                <div class="col-lg-6">налични: </div>
-                                <div class="col-lg-6 text-right price-bold">0.00</div>
-                            </div>
-                            <div>
-                                <div class="col-lg-6">цел: </div>
-                                <div class="col-lg-6 text-right">0.00</div>
-                            </div>
-                        </div>
                     </div>
                     <div class="row border-red last">
                         <div class="col-lg-8">
-                            <h4>0.00%</h4>
+                            <h4 class="all-percent">0.00%</h4>
                         </div>
                         <div class="col-lg-4 text-color">
-                            <div>
-                                <div class="col-lg-12 text-right price-bold">0.00</div>
-                            </div>
-                            <div>
-                                <div class="col-lg-12 text-right">0.00</div>
-                            </div>
+                            <div class="col-lg-8">налични: </div>
+                            <div class="col-lg-4 text-right price-bold all-savings">0.00</div>
+                            <div class="col-lg-8">цел: </div>
+                            <div class="col-lg-4 text-right all-desire">0.00</div>
                         </div>
                     </div>
                 </div>
             </div>
             <button id="addSavings" class="button button-warning page-button center-block ng-binding ">Добави спестяване</button>
+            <div class="row table">
+                <div class=" col-lg-6 col-md-offset-3">
+                    <div class="row main-row">
+                        <div class="col-lg-8">
+                            <h3>Непредвидени разходи</h3>
+                        </div>
+                    </div>
+                    <div class="row border-red last">
+                        <div class="col-lg-8">
+                            <h4 class="percent-input">0.00%</h4>
+                        </div>
+                        <div class="col-lg-4 text-color">
+                            <div class="col-lg-8">налични: </div>
+                            <div class="col-lg-4 text-right price-bold saving-input">0.00</div>
+                            <div class="col-lg-8">цел: </div>
+                            <div class="col-lg-4 text-right desire-input">0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
         <!--Rigth menu add savings form -->
         <div id="right-menu-wrapper-savings" class="row">
             <div class="close-area col-8"></div>
@@ -623,31 +633,37 @@
                 <div class="rigth-menu-body">
                     <hr>
                     <div class="form-group">
-                        <label for="date" class="control-label">Цел на спестяването:  </label>
-                        <div class="bank-name">
-                            <input type="text" name="bankName" class="form-control" placeholder="Пример: Почивка в Хаваите">
+                        <label for="date" class="control-label">Цел на спестяването:*  </label>
+                        <div class="purpose">
+                            <input type="text" name="purpose" class="form-control" placeholder="Пример: Почивка в Хаваите">
+                            <span class="hidden-span">Полето 'Цел на спестяването' е задължително.</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="initial-amount" class="control-label">Първоначална налична сума: </label>
+                        <label for="initial-amount" class="control-label">Първоначална налична сума:* </label>
                         <div class="initial-amount">
-                            <input type="number" name="number" class="form-control" placeholder="Пример: 200.00">
+                            <input type="number" name="initialAmount" class="form-control" onkeypress='return( event.charCode >= 48 && event.charCode <= 57) || (event.charCode==46)' placeholder="Пример: 200.00">
+                            <span class="hidden-span">Полето 'Първоначална налична сума' е задължително.</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="desire-amount" class="control-label">Желана сума за спестяване: </label>
+                        <label for="desire-amount" class="control-label">Желана сума за спестяване:* </label>
                         <div class="desire-amount">
-                            <input type="number" name="number" class="form-control" placeholder="Пример: 1500.00">
+                            <input type="number" name="desiredAmount" class="form-control" onkeypress='return( event.charCode >= 48 && event.charCode <= 57) || (event.charCode==46)' placeholder="Пример: 1500.00">
+                            <span class="hidden-span">Полето 'Желана сума за спестяване' е задължително.</span>
+                            <span class="hidden-span">Полето 'Желана сума за спестяване' трябва да е по-голямо от 'Първоначална налична сума'.</span>
+
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="endDate" class="control-label">Сумата е необходима през: </label>
+                        <label for="endDate" class="control-label">Сумата е необходима през:* </label>
                         <div class="endDate">
-                            <input type="date" name="date" class="form-control" placeholder="Пример: Юни">
+                            <input type="text" name="endDate" class="form-control" onfocus="(this.type='date', this.valueAsDate = new Date())" placeholder="Пример: Юни">
+                            <span class="hidden-span">Полето 'Сумата е необходима през' е задължително.</span>
                         </div>
                     </div>
 
-                    <button id="btnChooseCategory" class="button button-success form-button center-block " type="button">Запази промените</button>
+                    <button id="saveChangesSavings" class="button button-success form-button center-block " type="button">Запази промените</button>
                 </div>
             </div>
         </div>

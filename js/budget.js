@@ -198,11 +198,41 @@
         };
 
         //drawing savings
-        var aggregateSavingBold = document.querySelector("#savings .price-bold");
-        for (var index = 0; index < allReceivedValueInBudgetTableSaving.length; index++) {
-            allReceivedValueInBudgetTableSaving[index].innerHTML = currentUser.budgets[0].savings[index].received.toFixed(2);
-            aggregateSavingBold.innerHTML = currentUser.budgets[0].savings[index].received.toFixed(2);
+
+        var sumSavings = 0;
+        var sumDesire = 0;
+        var sumPercent = 0;
+
+        var savingsValuesInBudgetTableSavings = document.querySelectorAll("#mySavings .saving-input");
+        var desireValuesInBudgetTableSavings = document.querySelectorAll("#mySavings .desire-input");
+        var percentValuesInBudgetTableSavings = document.querySelectorAll("#mySavings .percent-input");
+
+        var aggregateSavingsSavingAll = document.querySelector("#mySavings .all-savings");
+        var aggregateSavingsDesireAll = document.querySelector("#mySavings .all-desire");
+        var aggregateSavingsPercentAll = document.querySelector("#mySavings .all-percent");
+        console.log("savingsValuesInBudgetTableSavings = ")
+        console.log(savingsValuesInBudgetTableSavings)
+        console.log("desireValuesInBudgetTableSavings = ")
+        console.log(desireValuesInBudgetTableSavings)
+        console.log("percentValuesInBudgetTableSaving = ")
+        console.log(percentValuesInBudgetTableSavings)
+
+        for (var index = 0; index < savingsValuesInBudgetTableSavings.length; index++) {
+            //трябва да се направи в масива savings[] първия елемент да е unexpectedExpense и да е направен с конструктора new Savings(), ама гърми
+            savingsValuesInBudgetTableSavings[index].innerHTML = currentUser.budgets[0].savings[index].getSavedMoney().toFixed(2);
+            desireValuesInBudgetTableSavings[index].innerHTML = currentUser.budgets[0].savings[index].desiredAmount.toFixed(2);
+            percentValuesInBudgetTableSavings[index].innerHTML = currentUser.budgets[0].savings[index].progressInPercent().toFixed(2) + "%";
+
+            sumSavings += Number(currentUser.budgets[0].savings[index].getSavedMoney().toFixed(2));
+            aggregateSavingsSavingAll.innerHTML = sumSavings.toFixed(2);
+
+            sumDesire += Number(currentUser.budgets[0].savings[index].desiredAmount.toFixed(2));
+            aggregateSavingsDesireAll.innerHTML = sumDesire.toFixed(2);
+
+            sumPercent += Number(currentUser.budgets[0].savings[index].progressInPercent().toFixed(2));
+            aggregateSavingsPercentAll.innerHTML = sumPercent.toFixed(2) + "%";
         };
+
         //drawing credit
         var sumLeftoToPay = 0;
         var sumTotal = 0;
@@ -269,9 +299,6 @@
             currentUser.addTransaction(transaction);
         }
 
-
-
-
         drawBudgetTable();
         event.preventDefault();
 
@@ -285,13 +312,11 @@
     var inputUnpaidFees = document.querySelector("#right-menu-wrapper-credit input[name=unpaidFees]");
     var inputMaturityDate = document.querySelector("#right-menu-wrapper-credit input[name=maturityDate]");
 
-    saveChangesCredits.addEventListener("click", function() {
+    saveChangesCredits.addEventListener("click", function(event) {
         var isValid = true;
-        console.log("banani")
-            //validation!!!!!
+        //validation!!!!!
         if (inputBankName.value == "") {
             document.querySelector(".bank-name span").setAttribute("class", "visible");
-            console.log(document.querySelector(".bank-name span"))
             isValid = false;
         } else {
             document.querySelector(".bank-name span").setAttribute("class", "hidden");
@@ -311,7 +336,6 @@
         if (inputMaturityDate.value == "") {
             document.querySelectorAll(".maturityDate span")[0].setAttribute("class", "visible");
             document.querySelectorAll(".maturityDate span")[1].setAttribute("class", "hidden");
-
             isValid = false;
         } else if (inputMaturityDate.value <= 0 || inputMaturityDate.value > 31) {
             document.querySelectorAll(".maturityDate span")[1].setAttribute("class", "visible");
@@ -330,7 +354,6 @@
 
         function addCreditsToBudgetTable() {
             var parent = document.querySelector("#credits .container");
-            console.log(parent)
             var fragment = document.createDocumentFragment();
 
             var div = makeElement("div", {
@@ -370,7 +393,6 @@
                 class: "percent"
             });
             h4InDiv5.innerText = credit.progressInPercent() + "%";
-            console.log(credit.progressInPercent())
             div5.appendChild(h4InDiv5);
 
             var div6 = makeElement("div", {
@@ -415,6 +437,150 @@
         };
         addCreditsToBudgetTable()
         drawBudgetTable();
+        var event = event || window.event;
+        event.preventDefault();
+
+    }, false);
+
+    //add savings to budget
+    var saveChangesSavings = document.getElementById("saveChangesSavings");
+    var inputPurpose = document.querySelector("#right-menu-wrapper-savings input[name=purpose]");
+    var inputInitialAmount = document.querySelector("#right-menu-wrapper-savings input[name=initialAmount]");
+    var inputDesiredAmount = document.querySelector("#right-menu-wrapper-savings input[name=desiredAmount]");
+    var inputEndDate = document.querySelector("#right-menu-wrapper-savings input[name=endDate]");
+
+    saveChangesSavings.addEventListener("click", function(event) {
+        var isValid = true;
+        if (inputPurpose.value == "") {
+            document.querySelector(".purpose span").setAttribute("class", "visible");
+            isValid = false;
+        } else {
+            document.querySelector(".purpose span").setAttribute("class", "hidden");
+        }
+        if (inputInitialAmount.value == "") {
+            document.querySelector(".initial-amount span").setAttribute("class", "visible");
+            isValid = false;
+        } else {
+            document.querySelector(".initial-amount span").setAttribute("class", "hidden");
+        }
+
+        if (inputDesiredAmount.value == "") {
+            document.querySelectorAll(".desire-amount span")[0].setAttribute("class", "visible");
+            document.querySelectorAll(".desire-amount span")[1].setAttribute("class", "hidden");
+            isValid = false;
+        } else if (Number(inputDesiredAmount.value) <= Number(inputInitialAmount.value)) {
+            document.querySelectorAll(".desire-amount span")[1].setAttribute("class", "visible");
+            document.querySelectorAll(".desire-amount span")[0].setAttribute("class", "hidden");
+
+            isValid = false;
+        } else {
+            document.querySelectorAll(".desire-amount span")[0].setAttribute("class", "hidden");
+            document.querySelectorAll(".desire-amount span")[1].setAttribute("class", "hidden");
+        }
+        if (inputEndDate.value == "") {
+            document.querySelector(".endDate span").setAttribute("class", "visible");
+            isValid = false;
+        } else {
+            document.querySelector(".endDate span").setAttribute("class", "hidden");
+        }
+
+        if (isValid) {
+            var saving = new Saving(inputPurpose.value, inputInitialAmount.value, inputDesiredAmount.value, inputEndDate.value);
+            currentUser.addSaving(saving);
+            console.log(saving)
+
+            function addSavingsToBudgetTable() {
+                var parent = document.querySelector("#mySavings .container");
+                var fragment = document.createDocumentFragment();
+
+                var div = makeElement("div", {
+                    class: "row table"
+                });
+
+                var div1 = makeElement("div", {
+                    class: "col-lg-6 col-md-offset-3"
+                });
+                div.appendChild(div1);
+
+                var div2 = makeElement("div", {
+                    class: "row main-row"
+                });
+                div1.appendChild(div2);
+
+                var div3 = makeElement("div", {
+                    class: "col-lg-8"
+                });
+                div2.appendChild(div3)
+
+                var h3InDiv3 = makeElement("h3");
+                h3InDiv3.innerText = inputPurpose.value;
+                div3.appendChild(h3InDiv3);
+
+                var div4 = makeElement("div", {
+                    class: "row border-red last"
+                });
+                div1.appendChild(div4);
+
+                var div5 = makeElement("div", {
+                    class: "col-lg-8"
+                });
+                div4.appendChild(div5);
+
+                var h4InDiv5 = makeElement("h4", {
+                    class: "percent-input"
+                });
+
+                h4InDiv5.innerText = saving.progressInPercent() + "%";
+                div5.appendChild(h4InDiv5);
+
+                var div6 = makeElement("div", {
+                    class: "col-lg-4 text-color"
+                });
+
+                div4.appendChild(div6);
+
+                var div7 = makeElement("div", {
+                    class: "col-lg-8"
+                });
+                div7.innerText = "налични:"
+                div6.appendChild(div7);
+
+                var div8 = makeElement("div", {
+                    class: "col-lg-4 text-right price-bold saving-input"
+                });
+
+                div8.innerText = saving.getSavedMoney();
+                div6.appendChild(div8);
+                var div9 = makeElement("div", {
+                    class: "col-lg-8"
+                });
+                div9.innerText = "цел:"
+                div6.appendChild(div9);
+
+                var div10 = makeElement("div", {
+                    class: "col-lg-4 text-right desire-input"
+                });
+
+                div10.innerText = saving.desiredAmount;
+                div6.appendChild(div10);
+
+                fragment.appendChild(div);
+                parent.appendChild(fragment);
+
+                //add option to select for savings
+                var option = makeElement("option", {
+                    value: inputPurpose.value
+                });
+                option.innerText = inputPurpose.value;
+                var selectSavings = document.querySelector("#select-savings");
+                selectSavings.appendChild(option);
+            };
+            addSavingsToBudgetTable();
+            drawBudgetTable();
+        };
+
+        var event = event || window.event;
+        event.preventDefault();
     }, false);
 
 })();
