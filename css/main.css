@@ -506,7 +506,7 @@ section h2.section-heading {
 }
 
 #diagram,
-#payment-diagram {
+#transactions-diagram {
     width: 450px;
     height: 500px;
     background-color: #6D6875;
@@ -514,12 +514,12 @@ section h2.section-heading {
 }
 
 #buttons,
-#payment-buttons {
+#transactions-buttons {
     padding-left: 30px;
 }
 
 #buttons a,
-#payment-buttons a {
+#transactions-buttons a {
     color: darkslategrey;
     padding: 10px;
     text-decoration: none;

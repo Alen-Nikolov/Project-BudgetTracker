@@ -56,7 +56,9 @@ User.prototype.addPlannedValueToBudgetCredits = function(value, number) {
     // this.budgets[0].expenses[number].planned = value;
 };
 
-
+User.prototype.getReceivedValueFromBudget = function(transType) {
+    return this.budgets[0].getReceivedValue(transType);
+}
 User.prototype.addCredit = function(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate) {
     // this.budgets[0].addCredit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate)
     this.budgets[0].credits.push(new Credit(bankName, monthFee, feesLeftToPay, unpaidFees, maturityDate));
@@ -69,6 +71,7 @@ User.prototype.addSaving = function(savings) {
 User.prototype.addTransaction = function(transaction) {
     this.budgets[0].addTransaction(transaction);
 };
+
 User.prototype.createNewBudget = function() {
     var newBudget = new Budget(this, new Date());
     newBudget.credits = this.budgets[this.budgets.length - 1].credits;
@@ -88,11 +91,6 @@ User.prototype.createNewBudget = function() {
 
 
 };
-User.prototype.copyBudget = function() {
-
-};
-
-
 
 // ---------------------------------------BUDGET CONSRUCTOR----------------------------------------
 function Budget(user, date) {
@@ -171,7 +169,7 @@ function Budget(user, date) {
         received: 0
     }];
     this.credits = [];
-    this.savings = [{ name: "unexpectedExpenses", planned: 0, received: 0 }];
+    this.savings = [{ name: "unexpectedExpense", planned: 0, received: 0 }];
     this.transactions = [];
 };
 Budget.prototype.addPlannedValueToExpenses = function(value, number) {
@@ -189,13 +187,15 @@ Budget.prototype.addPlannedValueToCredits = function(value, number) {
 Budget.prototype.addTransaction = function(transaction) {
     this.transactions.push(transaction);
     for (var index = 0; index < this[transaction.type.value].length; index++) {
-        console.log(this[transaction.type.value][index]);
         if (this[transaction.type.value][index].name == transaction.categoryValue) {
             this[transaction.type.value][index].received += Number(transaction.amount);
+            // console.log(this[transaction.type.value][index].received);
         }
     }
 };
-
+Budget.prototype.getReceivedValue = function(transType) {
+    return this[transType];
+}
 
 // ----------------------------------------CREDIT CONSRUCTOR---------------------------------------
 

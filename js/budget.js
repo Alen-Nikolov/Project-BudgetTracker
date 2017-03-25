@@ -6,7 +6,6 @@
         offset: 51
     });
 
-
     // Highlight the top nav as scrolling occurs
     $('body').scrollspy({
         target: '.navbar-fixed-top',
@@ -28,11 +27,10 @@
 
 })(jQuery); // End of use strict
 
-//Button for transactions
-
+//Button for  new transactions, new credit and new saving 
 (function() {
     var transButton = document.getElementById("transBtn");
-    var menuRightPayment = document.getElementById("right-menu-wrapper-expense");
+    var menuRightTrans = document.getElementById("right-menu-wrapper-expense");
     var creditButton = document.getElementById("addCredit");
     var menuRightCredit = document.getElementById("right-menu-wrapper-credit");
     var savingsButton = document.getElementById("addSavings");
@@ -44,8 +42,7 @@
 
 
     transButton.addEventListener("click", function() {
-        menuRightPayment.style.display = "flex";
-        // buttons[1].focus();
+        menuRightTrans.style.display = "flex";
         inputDate.valueAsDate = new Date();
     }, false);
 
@@ -68,31 +65,33 @@
     });
 
     function closeMenu(event) {
-        menuRightPayment.style.display = "none";
+        menuRightTrans.style.display = "none";
         menuRightCredit.style.display = "none";
         menuRightSavings.style.display = "none";
         event.preventDefault()
     };
 
-    //Changing the transaction type
+    //Changing the transaction type and saving the input data
     var selectExpense = document.getElementById("select-expenses");
     var selectIcomes = document.getElementById("select-incomes");
     var selectSavings = document.getElementById("select-savings");
     var btnSaveChanges = document.getElementById("btnSaveChanges");
     var spans = document.querySelectorAll("#right-menu-wrapper-expense span");
-
-    function buttonListenerTrans(self, category) {
-
-    };
+    var inputRadio = document.querySelectorAll(".radioBtns input[type=radio]");
+    console.log(inputRadio)
+    console.log(inputRadio[0].value)
+    console.log(inputRadio[0].checked == "")
+    console.log(inputRadio[1].checked == "")
 
     function setDisplay(expense, income, saving) {
         selectExpense.style.display = expense;
         selectIcomes.style.display = income;
         selectSavings.style.display = saving;
-    }
+    };
 
     var seletedCategory = "";
     var selectedButn = buttons[1];
+
     //---------------------------ДОХОДИ----------------------------------------
     buttons[0].addEventListener("click", function(event) {
         event = event || window.event;
@@ -108,6 +107,7 @@
         setDisplay("none", "block", "none");
         document.querySelector(".radioBtns").style.display = "none";
         document.querySelector(".description textarea[name=description]").placeholder = "Пример: Месечен аванс";
+
         event.preventDefault();
     });
 
@@ -144,20 +144,28 @@
         setDisplay("none", "none", "block");
         document.querySelector(".radioBtns").style.display = "flex";
         document.querySelector(".description textarea[name=description]").placeholder = "Пример: Рожден ден";
+
         event.preventDefault();
 
     });
+
+
     var allSelects = document.querySelectorAll(".categoryView select");
     Array.prototype.forEach.call(allSelects, function(elem) {
         elem.addEventListener("change", function() {
             seletedCategory = elem.value;
-        })
-    })
+        }, false);
+    });
+
+    var allReceivedValueInBudgetTableExpense = document.querySelectorAll("#expense .price-bold");
+    var allReceivedValueInBudgetTableIncome = document.querySelectorAll("#income .price-bold");
+    var allReceivedValueInBudgetTableSaving = document.querySelectorAll("#bugdetSavings .price-bold");
+
     btnSaveChanges.addEventListener("click", function(event) {
         var isValid = true;
-        console.log("banani")
-        console.log(selectedButn)
-        console.log(seletedCategory)
+        // console.log("banani")
+        // console.log(selectedButn)
+        // console.log(seletedCategory)
         if (inputDate.valueAsDate == null) {
             document.querySelector(".select-date span").setAttribute("class", "visible");
             isValid = false;
@@ -176,9 +184,21 @@
         } else {
             document.getElementById("span-category").setAttribute("class", "hidden");
         }
+
         if (isValid) {
+            if (inputRadio[0].checked == "") {
+                inputAmount.value *= -1;
+            }
             var transaction = new Transaction(inputDate.value, inputAmount.value, textareaComment.value, selectedButn, seletedCategory);
             currentUser.addTransaction(transaction);
+            // console.log(inputAmount.value)
+        }
+
+
+        for (var index = 0; index < allReceivedValueInBudgetTableExpense.length - 1; index++) {
+            console.log(allReceivedValueInBudgetTableExpense[index + 1].innerHTML)
+            console.log(currentUser.getReceivedValueFromBudget(transaction.type.value)[index + 1].name)
+
         }
         event.preventDefault();
 

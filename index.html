@@ -22,7 +22,7 @@
 </head>
 
 <body id="page-top" class="index">
-    <!--LoginForm & Reg Form-->
+    <!--LoginForm & RegForm-->
     <div id="log">
         <div class="overlay"></div>
         <center>
@@ -49,10 +49,9 @@
             </div>
         </center>
     </div>
-    <!--Right menu button-->
+    <!--Right menu button Transactions-->
     <div id="right-menu-wrapper-expense" class="row">
         <div class="close-area col-8"></div>
-
         <div class="right-menu col-12 col-sm-12 col-lg-4">
             <div class="inputView">
                 <div class="right-menu-header">
@@ -175,7 +174,7 @@
                         <a class="page-scroll" href="#savings">спестявания</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#payments">плащания</a>
+                        <a class="page-scroll" href="#transactionss">плащания</a>
                     </li>
                     <li>
                         <a id="transBtn">добавяне на плащания <i class="fa fa-plus-circle fa-2x fa-fw" aria-hidden="true"></i></a>
@@ -245,8 +244,8 @@
                 </div>
                 <div class="col-md-7">
                     <div id="buttons">
-                        <span><a href="" id="overviewBudget">Текущо състояние</a></span>
-                        <span><a href="" id="changeBudget">Промени бюджета</a></span>
+                        <span><a href="#" id="overviewBudget">Текущо състояние</a></span>
+                        <span><a href="#" id="changeBudget">Промени бюджета</a></span>
                     </div>
                     <hr>
 
@@ -469,8 +468,6 @@
                                     <div class="col-lg-6 text-right savings-aggregate">0.00</div>
                                 </div>
                             </div>
-                        </article>
-                        <article id="unexpectedExpense">
                             <div class="row border-blue last">
                                 <div class="col-lg-8">
                                     <h4><i class="fa fa-pie-chart" aria-hidden="true"></i> &nbsp;Непредвидени разходи</h4>
@@ -530,7 +527,7 @@
             </div>
             <button id="addCredit" class="button button-warning page-button center-block ng-binding ">Добави кредит</button>
         </div>
-        <!--form add credit -->
+        <!--Rigth menu add credit form-->
         <div id="right-menu-wrapper-credit" class="row">
             <div class="close-area col-8"></div>
 
@@ -605,7 +602,7 @@
             </div>
             <button id="addSavings" class="button button-warning page-button center-block ng-binding ">Добави спестяване</button>
         </div>
-        <!--form add credit -->
+        <!--Rigth menu add savings form -->
         <div id="right-menu-wrapper-savings" class="row">
             <div class="close-area col-8"></div>
 
@@ -645,7 +642,7 @@
             </div>
         </div>
     </section>
-    <section id="payments">
+    <section id="transactionss">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center align-self-center">
@@ -655,17 +652,17 @@
             <hr>
             <div class="row">
                 <div class="col-md-5">
-                    <canvas id="payment-diagram"> </canvas>
+                    <canvas id="transactions-diagram"> </canvas>
                 </div>
                 <div class="col-md-7">
-                    <div id="payment-buttons">
+                    <div id="transactions-buttons">
                         <span><a href="" id="allMonths">Всички</a></span>
                         <span><a href="" id="currentMonth">Този месец</a></span>
                     </div>
                     <h2 class="heading-center-line"><span class="ng-binding">Март 2017</span></h2>
 
-                    <div id="payment-table" class="col-lg-12">
-                        <article id="listOfPayments">
+                    <div id="transactions-table" class="col-lg-12">
+                        <article id="listOftransactionss">
                             <div class="row ">
                                 <div class="col-md-12">
                                     <div class="transaction-list-item">
