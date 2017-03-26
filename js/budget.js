@@ -216,11 +216,11 @@
 
         for (var index = 0; index < savingsValuesInBudgetTableSavings.length; index++) {
 
-            savingsValuesInBudgetTableSavings[index].innerHTML = Number(currentUser.budgets[0].savings[index].getSavedMoney()).toFixed(2);
+            savingsValuesInBudgetTableSavings[index].innerHTML = parseFloat(currentUser.budgets[0].savings[index].getSavedMoney()).toFixed(2);
             savingsInBudget[index].innerHTML = Number(currentUser.budgets[0].savings[index].getSavedMoney()).toFixed(2)
 
-            desireValuesInBudgetTableSavings[index].innerHTML = Number(currentUser.budgets[0].savings[index].desiredAmount).toFixed(2);
-            percentValuesInBudgetTableSavings.innerHTML = Number(currentUser.budgets[0].savings[index].progressInPercent()).toFixed(2) + "%";
+            desireValuesInBudgetTableSavings[index].innerHTML = parseFloat(currentUser.budgets[0].savings[index].desiredAmount).toFixed(2);
+            percentValuesInBudgetTableSavings[index].innerHTML = parseFloat(currentUser.budgets[0].savings[index].progressInPercent()).toFixed(2) + "%";
 
             sumSavings += Number(currentUser.budgets[0].savings[index].getSavedMoney());
             aggregateSavingsSavingAll.innerHTML = parseFloat(sumSavings).toFixed(2);
@@ -235,36 +235,40 @@
 
         //drawing credit
         var sumLeftoToPay = 0;
+        var sumReceived = 0;
         var sumTotal = 0;
         var sumPercent = 0;
 
-        var leftToPayValuesInBudgetTableCredits = document.querySelectorAll("#credits .leftToPay");
-        var totalValuesInBudgetTableCredits = document.querySelectorAll("#credits .total");
-        var percentValuesInBudgetTableCredits = document.querySelectorAll("#credits .percent");
-        var lefToPayInBudget = document.querySelectorAll(".leftToPay-input-table");
+        var leftToPayValuesInBudgetTableCredits = document.querySelectorAll(".leftToPay");
+        var totalValuesInBudgetTableCredits = document.querySelectorAll(".total");
+        var percentValuesInBudgetTableCredits = document.querySelectorAll(".percent");
+        var creditsInBudget = document.querySelectorAll(".received-table");
 
-
-        var aggregateCreditsLeftToPayAll = document.querySelector("#credits .allLeftToPay");
-        var aggregateCreditsTotalAll = document.querySelector("#credits .allTotal");
-        var aggregateCreditsPercentAll = document.querySelector("#credits .allPercent");
-        var aggregateCreditsLeftTopayTable = document.querySelector(".all-leftToPay-table");
+        var aggregateCreditsLeftToPayAll = document.querySelector(".allLeftToPay");
+        var aggregateCreditsTotalAll = document.querySelector(".allTotal");
+        var aggregateCreditsPercentAll = document.querySelector(".allPercent");
+        var aggregateCreditsReceivedAll = document.querySelector(".allReceived");
 
         for (var index = 0; index < leftToPayValuesInBudgetTableCredits.length; index++) {
+
             leftToPayValuesInBudgetTableCredits[index].innerHTML = currentUser.budgets[0].credits[index].leftToPay().toFixed(2);
             totalValuesInBudgetTableCredits[index].innerHTML = currentUser.budgets[0].credits[index].total.toFixed(2);
             percentValuesInBudgetTableCredits[index].innerHTML = currentUser.budgets[0].credits[index].progressInPercent().toFixed(2) + "%";
-            lefToPayInBudget[index].innerHTML = currentUser.budgets[0].credits[index].leftToPay().toFixed(2);
+            creditsInBudget[index].innerHTML = currentUser.budgets[0].credits[index].received.toFixed(2);
 
             sumLeftoToPay += Number(currentUser.budgets[0].credits[index].leftToPay().toFixed(2));
             aggregateCreditsLeftToPayAll.innerHTML = sumLeftoToPay.toFixed(2);
-            aggregateCreditsLeftTopayTable.innerHTML = parseFloat(sumLeftoToPay.toFixed(2));
 
             sumTotal += Number(currentUser.budgets[0].credits[index].total.toFixed(2));
             aggregateCreditsTotalAll.innerHTML = sumTotal.toFixed(2);
 
             sumPercent += Number(currentUser.budgets[0].credits[index].progressInPercent().toFixed(2));
             aggregateCreditsPercentAll.innerHTML = sumPercent.toFixed(2) + "%";
+
+            sumReceived += Number(currentUser.budgets[0].credits[index].received.toFixed(2));
+            aggregateCreditsReceivedAll.innerHTML = sumReceived.toFixed(2);
         };
+
 
     };
     btnSaveChanges.addEventListener("click", function(event) {
@@ -442,11 +446,11 @@
         };
 
         function addCreditsToBudgetTable() {
-            var parent = document.querySelector("#savings");
+            var parent = document.querySelector("#creditExpense");
             var fragment = document.createDocumentFragment();
 
             var div = makeElement("div", {
-                class: "row border-blue last"
+                class: "row border-red last"
             });
 
             var div1 = makeElement("div", {
@@ -458,13 +462,13 @@
             div1.appendChild(div2);
 
             var div3 = makeElement("i", {
-                class: "fa fa-pie-chart"
+                class: "fa fa-credit-card-alt"
             });
 
             div3.setAttribute("aria-hidden", "true");
             div2.appendChild(div3);
 
-            div2.innerHTML += "&nbsp; " + inputPurpose.value;
+            div2.innerHTML += "&nbsp; " + inputBankName.value;
 
 
             var div4 = makeElement("div", {
@@ -473,9 +477,9 @@
             div.appendChild(div4);
 
             var div5 = makeElement("div", {
-                class: "col-lg-12 text-right price-bold saving-input-table"
+                class: "col-lg-12 text-right price-bold received-table"
             });
-            div5.innerHTML = saving.getSavedMoney();
+            div5.innerHTML = credit.received;
             div4.appendChild(div5);
 
             var div6 = makeElement("div", {
@@ -493,6 +497,7 @@
             parent.appendChild(fragment);
         };
         addToSectionCredits()
+        addCreditsToBudgetTable()
         drawBudgetTable();
         var event = event || window.event;
         event.preventDefault();
@@ -544,7 +549,6 @@
         if (isValid) {
             var saving = new Saving(inputPurpose.value, inputInitialAmount.value, inputDesiredAmount.value, inputEndDate.value);
             currentUser.addSaving(saving);
-            console.log(saving)
 
             function addSavingsSection() {
                 var parent = document.querySelector("#mySavings .container");
@@ -618,7 +622,7 @@
                     class: "col-lg-4 text-right desire-input"
                 });
 
-                div10.innerText = saving.desiredAmount;
+                div10.innerText = inputDesiredAmount.value;
                 div6.appendChild(div10);
 
                 fragment.appendChild(div);

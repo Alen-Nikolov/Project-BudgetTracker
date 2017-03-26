@@ -255,22 +255,14 @@ Saving.prototype.calculateMonthlyPayment = function() {
 };
 
 Saving.prototype.getSavedMoney = function() {
-    // console.log("this.initialAmount")
-    // console.log(this.initialAmount)
-    // console.log("+")
-    // console.log("this.received")
-    // console.log(this.received)
     var sum = (Number(this.initialAmount) + Number(this.received))
-        // console.log(sum)
-
     return sum;
 };
 Saving.prototype.progressInPercent = function() {
     if (this.desiredAmount == 0) {
         return 0;
     } else {
-        return (((Number(this.initialAmount) + this.received) / Number(this.desiredAmount)) * 100);
-
+        return (((Number(this.initialAmount) + Number(this.received)) / Number(this.desiredAmount)) * 100);
     }
 };
 
