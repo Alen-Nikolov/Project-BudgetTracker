@@ -417,9 +417,14 @@
             div6.appendChild(div7);
 
             var div8 = makeElement("div", {
-                class: "col-lg-4 text-right price-bold leftToPay"
+                class: "col-lg-4 text-right price-bold leftToPay hide-content"
             });
             div8.innerText = credit.leftToPay();
+            var inputPlanned=makeElement('input',{
+                text:"text",
+                class:"col-lg-12 text-color text-right"
+            })
+            div8.appendChild(inputPlanned);
             div6.appendChild(div8);
             var div9 = makeElement("div", {
                 class: "col-lg-8"
