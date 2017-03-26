@@ -203,34 +203,34 @@
         var sumDesire = 0;
         var sumPercent = 0;
 
-        var savingsValuesInBudgetTableSavings = document.querySelectorAll("#mySavings .saving-input");
-        var desireValuesInBudgetTableSavings = document.querySelectorAll("#mySavings .desire-input");
-        var percentValuesInBudgetTableSavings = document.querySelectorAll("#mySavings .percent-input");
+        var savingsValuesInBudgetTableSavings = document.querySelectorAll(".saving-input");
+        var desireValuesInBudgetTableSavings = document.querySelectorAll(".desire-input");
+        var percentValuesInBudgetTableSavings = document.querySelectorAll(".percent-input");
+        var savingsInBudget = document.querySelectorAll(".saving-input-table");
 
-        var aggregateSavingsSavingAll = document.querySelector("#mySavings .all-savings");
-        var aggregateSavingsDesireAll = document.querySelector("#mySavings .all-desire");
-        var aggregateSavingsPercentAll = document.querySelector("#mySavings .all-percent");
-        console.log("savingsValuesInBudgetTableSavings = ")
-        console.log(savingsValuesInBudgetTableSavings)
-        console.log("desireValuesInBudgetTableSavings = ")
-        console.log(desireValuesInBudgetTableSavings)
-        console.log("percentValuesInBudgetTableSaving = ")
-        console.log(percentValuesInBudgetTableSavings)
+        var aggregateSavingsSavingAll = document.querySelector(".all-savings");
+        var aggregateSavingsDesireAll = document.querySelector(".all-desire");
+        var aggregateSavingsPercentAll = document.querySelector(".all-percent");
+        var aggregateSavingsSavingTable = document.querySelector(".all-savings-table");
+
 
         for (var index = 0; index < savingsValuesInBudgetTableSavings.length; index++) {
-            //трябва да се направи в масива savings[] първия елемент да е unexpectedExpense и да е направен с конструктора new Savings(), ама гърми
-            savingsValuesInBudgetTableSavings[index].innerHTML = currentUser.budgets[0].savings[index].getSavedMoney().toFixed(2);
-            desireValuesInBudgetTableSavings[index].innerHTML = currentUser.budgets[0].savings[index].desiredAmount.toFixed(2);
-            percentValuesInBudgetTableSavings[index].innerHTML = currentUser.budgets[0].savings[index].progressInPercent().toFixed(2) + "%";
 
-            sumSavings += Number(currentUser.budgets[0].savings[index].getSavedMoney().toFixed(2));
-            aggregateSavingsSavingAll.innerHTML = sumSavings.toFixed(2);
+            savingsValuesInBudgetTableSavings[index].innerHTML = Number(currentUser.budgets[0].savings[index].getSavedMoney()).toFixed(2);
+            savingsInBudget[index].innerHTML = Number(currentUser.budgets[0].savings[index].getSavedMoney()).toFixed(2)
 
-            sumDesire += Number(currentUser.budgets[0].savings[index].desiredAmount.toFixed(2));
-            aggregateSavingsDesireAll.innerHTML = sumDesire.toFixed(2);
+            desireValuesInBudgetTableSavings[index].innerHTML = Number(currentUser.budgets[0].savings[index].desiredAmount).toFixed(2);
+            percentValuesInBudgetTableSavings.innerHTML = Number(currentUser.budgets[0].savings[index].progressInPercent()).toFixed(2) + "%";
 
-            sumPercent += Number(currentUser.budgets[0].savings[index].progressInPercent().toFixed(2));
-            aggregateSavingsPercentAll.innerHTML = sumPercent.toFixed(2) + "%";
+            sumSavings += Number(currentUser.budgets[0].savings[index].getSavedMoney());
+            aggregateSavingsSavingAll.innerHTML = parseFloat(sumSavings).toFixed(2);
+            aggregateSavingsSavingTable.innerHTML = parseFloat(sumSavings).toFixed(2);
+
+            sumDesire += Number(currentUser.budgets[0].savings[index].desiredAmount);
+            aggregateSavingsDesireAll.innerHTML = parseFloat(sumDesire).toFixed(2);
+
+            sumPercent += Number(currentUser.budgets[0].savings[index].progressInPercent());
+            aggregateSavingsPercentAll.innerHTML = parseFloat(sumPercent).toFixed(2) + "%";
         };
 
         //drawing credit
@@ -241,19 +241,23 @@
         var leftToPayValuesInBudgetTableCredits = document.querySelectorAll("#credits .leftToPay");
         var totalValuesInBudgetTableCredits = document.querySelectorAll("#credits .total");
         var percentValuesInBudgetTableCredits = document.querySelectorAll("#credits .percent");
+        var lefToPayInBudget = document.querySelectorAll(".leftToPay-input-table");
+
 
         var aggregateCreditsLeftToPayAll = document.querySelector("#credits .allLeftToPay");
         var aggregateCreditsTotalAll = document.querySelector("#credits .allTotal");
         var aggregateCreditsPercentAll = document.querySelector("#credits .allPercent");
-
+        var aggregateCreditsLeftTopayTable = document.querySelector(".all-leftToPay-table");
 
         for (var index = 0; index < leftToPayValuesInBudgetTableCredits.length; index++) {
             leftToPayValuesInBudgetTableCredits[index].innerHTML = currentUser.budgets[0].credits[index].leftToPay().toFixed(2);
             totalValuesInBudgetTableCredits[index].innerHTML = currentUser.budgets[0].credits[index].total.toFixed(2);
             percentValuesInBudgetTableCredits[index].innerHTML = currentUser.budgets[0].credits[index].progressInPercent().toFixed(2) + "%";
+            lefToPayInBudget[index].innerHTML = currentUser.budgets[0].credits[index].leftToPay().toFixed(2);
 
             sumLeftoToPay += Number(currentUser.budgets[0].credits[index].leftToPay().toFixed(2));
             aggregateCreditsLeftToPayAll.innerHTML = sumLeftoToPay.toFixed(2);
+            aggregateCreditsLeftTopayTable.innerHTML = parseFloat(sumLeftoToPay.toFixed(2));
 
             sumTotal += Number(currentUser.budgets[0].credits[index].total.toFixed(2));
             aggregateCreditsTotalAll.innerHTML = sumTotal.toFixed(2);
@@ -296,6 +300,7 @@
                 inputAmount.value *= -1;
             }
             var transaction = new Transaction(inputDate.value, inputAmount.value, textareaComment.value, selectedButn.value, seletedCategory);
+            console.log(transaction)
             currentUser.addTransaction(transaction);
         }
 
@@ -352,7 +357,7 @@
             currentUser.addCredit(credit);
         }
 
-        function addCreditsToBudgetTable() {
+        function addToSectionCredits() {
             var parent = document.querySelector("#credits .container");
             var fragment = document.createDocumentFragment();
 
@@ -435,7 +440,59 @@
             var oprionGroup = document.querySelectorAll("#select-expenses optgroup");
             oprionGroup[1].appendChild(option);
         };
-        addCreditsToBudgetTable()
+
+        function addCreditsToBudgetTable() {
+            var parent = document.querySelector("#savings");
+            var fragment = document.createDocumentFragment();
+
+            var div = makeElement("div", {
+                class: "row border-blue last"
+            });
+
+            var div1 = makeElement("div", {
+                class: "col-lg-8"
+            });
+            div.appendChild(div1);
+
+            var div2 = makeElement("h4");
+            div1.appendChild(div2);
+
+            var div3 = makeElement("i", {
+                class: "fa fa-pie-chart"
+            });
+
+            div3.setAttribute("aria-hidden", "true");
+            div2.appendChild(div3);
+
+            div2.innerHTML += "&nbsp; " + inputPurpose.value;
+
+
+            var div4 = makeElement("div", {
+                class: "col-lg-4 text-color hide-content"
+            });
+            div.appendChild(div4);
+
+            var div5 = makeElement("div", {
+                class: "col-lg-12 text-right price-bold saving-input-table"
+            });
+            div5.innerHTML = saving.getSavedMoney();
+            div4.appendChild(div5);
+
+            var div6 = makeElement("div", {
+                class: "col-lg-12 text-right"
+            });
+            div6.innerHTML = "0.00"
+            div4.appendChild(div6);
+
+            var input7 = makeElement("input", {
+                type: "text",
+                class: "col-lg-12 text-color text-right"
+            });
+            fragment.appendChild(div);
+            div4.appendChild(input7);
+            parent.appendChild(fragment);
+        };
+        addToSectionCredits()
         drawBudgetTable();
         var event = event || window.event;
         event.preventDefault();
@@ -489,7 +546,7 @@
             currentUser.addSaving(saving);
             console.log(saving)
 
-            function addSavingsToBudgetTable() {
+            function addSavingsSection() {
                 var parent = document.querySelector("#mySavings .container");
                 var fragment = document.createDocumentFragment();
 
@@ -575,6 +632,59 @@
                 var selectSavings = document.querySelector("#select-savings");
                 selectSavings.appendChild(option);
             };
+
+            function addSavingsToBudgetTable() {
+                var parent = document.querySelector("#savings");
+                var fragment = document.createDocumentFragment();
+
+                var div = makeElement("div", {
+                    class: "row border-blue last"
+                });
+
+                var div1 = makeElement("div", {
+                    class: "col-lg-8"
+                });
+                div.appendChild(div1);
+
+                var div2 = makeElement("h4");
+                div1.appendChild(div2);
+
+                var div3 = makeElement("i", {
+                    class: "fa fa-pie-chart"
+                });
+
+                div3.setAttribute("aria-hidden", "true");
+                div2.appendChild(div3);
+
+                div2.innerHTML += "&nbsp; " + inputPurpose.value;
+
+
+                var div4 = makeElement("div", {
+                    class: "col-lg-4 text-color hide-content"
+                });
+                div.appendChild(div4);
+
+                var div5 = makeElement("div", {
+                    class: "col-lg-12 text-right price-bold saving-input-table"
+                });
+                div5.innerHTML = saving.getSavedMoney();
+                div4.appendChild(div5);
+
+                var div6 = makeElement("div", {
+                    class: "col-lg-12 text-right"
+                });
+                div6.innerHTML = "0.00"
+                div4.appendChild(div6);
+
+                var input7 = makeElement("input", {
+                    type: "text",
+                    class: "col-lg-12 text-color text-right"
+                });
+                fragment.appendChild(div);
+                div4.appendChild(input7);
+                parent.appendChild(fragment);
+            };
+            addSavingsSection();
             addSavingsToBudgetTable();
             drawBudgetTable();
         };

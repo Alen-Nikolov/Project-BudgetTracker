@@ -44,16 +44,13 @@ User.prototype.addPlannedValueToBudgetIncomes = function(value, number) {
     this.budgets[0].addPlannedValueToIncomes(value, number);
 };
 User.prototype.addPlannedValueToBudgetExpenses = function(value, number) {
-    // this.budgets[0].addPlannedValueToExpenses(value, number);
     this.budgets[0].expenses[number].planned = value;
 };
 User.prototype.addPlannedValueToBudgetSavings = function(value, number) {
     this.budgets[0].addPlannedValueToSavings(value, number);
-    //     this.budgets[0].expenses[number].planned = value;
 };
 User.prototype.addPlannedValueToBudgetCredits = function(value, number) {
     this.budgets[0].addPlannedValueToCredits(value, number);
-    // this.budgets[0].expenses[number].planned = value;
 };
 
 User.prototype.getReceivedValueFromBudget = function(transType) {
@@ -168,7 +165,7 @@ function Budget(user, date) {
         received: 0
     }];
     this.credits = [];
-    this.savings = [{ purpose: "unexpectedExpense", initialAmount: 0, desiredAmount: 0, endDate: null, planned: 0, received: 0 }];
+    this.savings = [new Saving("unexpectedExpense", 0, 0)];
     this.transactions = [];
 };
 Budget.prototype.addPlannedValueToExpenses = function(value, number) {
@@ -183,10 +180,16 @@ Budget.prototype.addPlannedValueToSavings = function(value, number) {
 Budget.prototype.addPlannedValueToCredits = function(value, number) {
     this.credits[number].planned = value;
 };
+// Budget.prototype.addDefaultSaving = function() {
+//     var unexpectedExpense = new Saving("unexpectedExpense", 0, 0, null);
+//     console.log(unexpectedExpense)
+//     this.savings.push();
+// }
+// Budget.addDefaultSaving()
 Budget.prototype.addTransaction = function(transaction) {
     this.transactions.push(transaction);
     for (var index = 0; index < this[transaction.type].length; index++) {
-        if (this[transaction.type][index].name == transaction.categoryValue) {
+        if (this[transaction.type][index].name == transaction.categoryValue || this[transaction.type][index].purpose == transaction.categoryValue) {
             this[transaction.type][index].received += Number(transaction.amount);
         }
     }
@@ -220,6 +223,8 @@ Credit.prototype.progressInPercent = function() {
 
 // ----------------------------------------SAVINGS CONSRUCTOR---------------------------------------
 
+
+
 function Saving(purpose, initialAmount, desiredAmount, endDate) {
     this.startDate = new Date();
     this.purpose = purpose;
@@ -229,10 +234,15 @@ function Saving(purpose, initialAmount, desiredAmount, endDate) {
     this.planned = 0;
     this.received = 0;
 
-    this.monthlyPayment = this.calculateMonthlyPayment();
-};
+    if (this.endDate === undefined) {
+        this.monthlyPayment = 0;
+    } else {
+        this.monthlyPayment = this.calculateMonthlyPayment();
+    }
 
+};
 Saving.prototype.calculateMonthlyPayment = function() {
+
     this.endDate = new Date(this.endDate);
     var months;
     months = (this.endDate.getYear() - this.startDate.getYear()) * 12;
@@ -243,18 +253,33 @@ Saving.prototype.calculateMonthlyPayment = function() {
     return Math.round((this.desiredAmount - this.initialAmount) / months);
 
 };
+
 Saving.prototype.getSavedMoney = function() {
-    return ((Number(this.initialAmount) + this.received));
+    // console.log("this.initialAmount")
+    // console.log(this.initialAmount)
+    // console.log("+")
+    // console.log("this.received")
+    // console.log(this.received)
+    var sum = (Number(this.initialAmount) + Number(this.received))
+        // console.log(sum)
+
+    return sum;
 };
 Saving.prototype.progressInPercent = function() {
-    return (((Number(this.initialAmount) + this.received) / this.desiredAmount) * 100).toFixed(2);
+    if (this.desiredAmount == 0) {
+        return 0;
+    } else {
+        return (((Number(this.initialAmount) + this.received) / Number(this.desiredAmount)) * 100);
+
+    }
 };
+
 
 // ----------------------------------------TRANSACTION CONSRUCTOR---------------------------------------
 
 function Transaction(date, amount, comment, type, categoryValue) {
     this.date = date;
-    this.amount = amount;
+    this.amount = Number(amount);
     this.comment = comment;
     this.type = type;
     this.categoryValue = categoryValue;
