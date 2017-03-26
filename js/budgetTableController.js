@@ -6,7 +6,6 @@
     var inputs = document.querySelectorAll(".hide-content>input");
     var inputsInIncome = document.querySelectorAll("#income input");
     var inputsInExpenses = document.querySelectorAll("#expense input");
-    var savings = document.querySelector("#savings input[type=text]");
     var aggregateDivs = document.querySelectorAll('.hide-content-main>div:last-of-type');
     var data = [];
     //evet listener on input value (keypress)
@@ -38,21 +37,48 @@
             }
         }, false);
     });
-    savings.addEventListener('keyup', function () {
-        var inputValue = Number(savings.value);
-        if (!isNaN(inputValue.toFixed(2))) {
-            $('.savings-aggregate').text(inputValue.toFixed(2));
-            data = [aggregateDivs[0].innerHTML, aggregateDivs[1].innerHTML, aggregateDivs[2].innerHTML];
-            reWriteTheChart(data);
-        }
-    }, false)
+
     //event listener on button Change budget
     buttonBudget.addEventListener("click", function (event) {
         event = event || window.event;
+        var credits = document.querySelectorAll("#creditExpense input[type=text]");
+        var savings=document.querySelectorAll("#savings input[type=text]");
         buttonBudget.style.backgroundColor = "#6BA368";
         overviewBudget.style.backgroundColor = "white";
         divsToRemove = document.querySelectorAll('.hide-content > div');
         inputs = document.querySelectorAll(".hide-content>input");
+        
+        //adding event listeners to credit inputs
+        var sumOfCredits = 0;
+        Array.prototype.forEach.call(credits, function (elem) {
+            elem.addEventListener("keyup", function () {
+                var sum = 0;
+                for (var index = 0; index < credits.length; index++) {
+                    sum += Number(credits[index].value);
+                }
+                sumOfCredits = sum;
+                if (!isNaN(sumOfCredits.toFixed(2))) {
+                    $('.credit-aggregate').text(sumOfCredits.toFixed(2));
+                }
+            }, false);
+        });
+
+        //adding event listeners to savings input
+        var sumOfSavings = 0;
+        Array.prototype.forEach.call(savings, function (elem) {
+
+            elem.addEventListener("keyup", function () {
+                var sum = 0;
+                for (var index = 0; index < savings.length; index++) {
+                    sum += Number(savings[index].value);
+                }
+                sumOfSavings = sum;
+                if (!isNaN(sumOfSavings.toFixed(2))) {
+                    $('.savings-aggregate').text(sumOfSavings.toFixed(2));
+                }
+            }, false);
+        });
+
         //Hides main divs
         for (var index = 0; index < divsToRemoveMain.length; index++) {
             divsToRemoveMain[index].style.display = "none";
