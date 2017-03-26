@@ -180,12 +180,7 @@ Budget.prototype.addPlannedValueToSavings = function(value, number) {
 Budget.prototype.addPlannedValueToCredits = function(value, number) {
     this.credits[number].planned = value;
 };
-// Budget.prototype.addDefaultSaving = function() {
-//     var unexpectedExpense = new Saving("unexpectedExpense", 0, 0, null);
-//     console.log(unexpectedExpense)
-//     this.savings.push();
-// }
-// Budget.addDefaultSaving()
+
 Budget.prototype.addTransaction = function(transaction) {
     this.transactions.push(transaction);
     for (var index = 0; index < this[transaction.type].length; index++) {
@@ -269,7 +264,8 @@ Saving.prototype.progressInPercent = function() {
 
 // ----------------------------------------TRANSACTION CONSRUCTOR---------------------------------------
 
-function Transaction(date, amount, comment, type, categoryValue) {
+function Transaction(name, date, amount, comment, type, categoryValue) {
+    this.name = name;
     this.date = date;
     this.amount = Number(amount);
     this.comment = comment;

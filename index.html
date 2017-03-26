@@ -464,16 +464,6 @@
                                     <div class="col-lg-6 text-right credit-aggregate">0.00</div>
                                 </div>
                             </div>
-                            <!--<div class="row border-blue last">
-                                <div class="col-lg-8">
-                                    <h4><i class="fa fa-pie-chart" aria-hidden="true"></i> &nbsp;sfsfs</h4>
-                                </div>
-                                <div class="col-lg-4 text-color hide-content">
-                                    <div class="col-lg-12 text-right price-bold leftToPay-input-table">0.00</div>
-                                    <div class="col-lg-12 text-right">0.00</div>
-                                    <input type="text" class="col-lg-12 text-color text-right">
-                                </div>
-                            </div>-->
                         </article>
                         <article id="savings">
                             <div class="row main-row">
@@ -601,7 +591,7 @@
                             <h3>Всички</h3>
                         </div>
                     </div>
-                    <div class="row border-red last">
+                    <div class="row border-blue last">
                         <div class="col-lg-8">
                             <h4 class="all-percent">0.00%</h4>
                         </div>
@@ -622,7 +612,7 @@
                             <h3>Непредвидени разходи</h3>
                         </div>
                     </div>
-                    <div class="row border-red last">
+                    <div class="row border-blue last">
                         <div class="col-lg-8">
                             <h4 class="percent-input">0.00%</h4>
                         </div>
@@ -684,7 +674,7 @@
             </div>
         </div>
     </section>
-    <section id="transactionss">
+    <section id="transactions">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center align-self-center">
@@ -696,18 +686,29 @@
                 <div class="col-md-5">
                     <canvas id="transactions-diagram"> </canvas>
                 </div>
-                <div class="col-md-7">
-                    <div id="transactions-buttons">
-                        <span><a href="" id="allMonths">Всички</a></span>
-                        <span><a href="" id="currentMonth">Този месец</a></span>
+                <div class=" col-md-7">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div id="transactions-buttons">
+                                <span><a href="" id="allMonths">Всички</a></span>
+                                <span><a href="" id="currentMonth">Този месец</a></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input id="smallSearch" class="search-input " type="text" ng-model="filter" placeholder="Търси">
+                            <label for="smallSearch">
+                                <span class="search-icon">
+                                </span>
+                            </label>
+                        </div>
                     </div>
                     <h2 class="heading-center-line"><span class="ng-binding">Март 2017</span></h2>
 
                     <div id="transactions-table" class="col-lg-12">
-                        <article id="listOftransactionss">
+                        <article id="listOftransactions">
                             <div class="row ">
-                                <div class="col-md-12">
-                                    <div class="transaction-list-item">
+                                <div class="parent col-md-12">
+                                    <!--<div class="transaction-list-item">
                                         <div class="transaction-date">14</div>
                                         <div class="transaction-list-item-body">
                                             <span class="transaction-list-item-name">Почивка на Хаваите</span>
@@ -716,14 +717,12 @@
                                         </div>
                                         <div class="pull-right">
                                             <div class="transaction-list-item-amount saving-amount">
-                                                <span>-</span>
-                                                <span>+</span>
-                                                <span class="ng-binding">-20.00</span>
+                                                <span class="ng-binding trans-amount">-20.00</span>
                                             </div>
                                             <a class="remove-button-icon fa-lg"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                             <a class="edit-button-icon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </article>

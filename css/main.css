@@ -630,15 +630,15 @@ div.border-blue.last {
 }
 
 .transaction-list-item {
-    height: 52px;
+    height: 60px;
     line-height: 52px;
     border: 1px solid #c1c1c1;
     border-right: none;
-    margin-bottom: 16px;
+    margin-bottom: 5px;
 }
 
 .transaction-date {
-    height: 50px;
+    height: 59px;
     width: 36px;
     text-align: center;
     background-color: #797979;
@@ -656,7 +656,7 @@ div.border-blue.last {
 }
 
 .transaction-list-item-name {
-    top: 14px;
+    top: 12px;
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;

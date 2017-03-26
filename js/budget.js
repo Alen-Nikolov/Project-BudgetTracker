@@ -105,12 +105,15 @@
     };
 
     var seletedCategory = "";
+    var selectedCategoryName = "";
+
     var selectedButn = buttons[1];
 
     //---------------------------ДОХОДИ----------------------------------------
     buttons[0].addEventListener("click", function(event) {
         event = event || window.event;
         seletedCategory = "";
+        selectedCategoryName = "";
         selectedButn = this;
         Array.prototype.forEach.call(buttons, function(elem) {
             elem.classList.remove("selected-btn");
@@ -130,6 +133,7 @@
     buttons[1].addEventListener("click", function(event) {
         event = event || window.event;
         seletedCategory = "";
+        selectedCategoryName = "";
         selectedButn = this;
         Array.prototype.forEach.call(buttons, function(elem) {
             elem.classList.remove("selected-btn");
@@ -148,6 +152,7 @@
     buttons[2].addEventListener("click", function(event) {
         event = event || window.event;
         seletedCategory = "";
+        selectedCategoryName = "";
         selectedButn = this;
         Array.prototype.forEach.call(buttons, function(elem) {
             elem.classList.remove("selected-btn");
@@ -169,6 +174,7 @@
     Array.prototype.forEach.call(allSelects, function(elem) {
         elem.addEventListener("change", function() {
             seletedCategory = elem.value;
+            selectedCategoryName = elem.options[this.selectedIndex].innerText.substr(1);
         }, false);
     });
 
@@ -176,7 +182,6 @@
 
     var allReceivedValueInBudgetTableExpense = document.querySelectorAll("#expense .price-bold:first-child");
     var allReceivedValueInBudgetTableIncome = document.querySelectorAll("#income .price-bold:first-child");
-    var allReceivedValueInBudgetTableSaving = document.querySelectorAll("#savings .price-bold:first-child");
 
     function drawBudgetTable() {
         //drawing the incomes
@@ -303,11 +308,87 @@
             if (inputRadio[0].checked == "") {
                 inputAmount.value *= -1;
             }
-            var transaction = new Transaction(inputDate.value, inputAmount.value, textareaComment.value, selectedButn.value, seletedCategory);
+            var transaction = new Transaction(selectedCategoryName, inputDate.value, inputAmount.value, textareaComment.value, selectedButn.value, seletedCategory);
             console.log(transaction)
             currentUser.addTransaction(transaction);
         }
+        //Add new transaction in transaction table
+        function drawTransactionTable() {
+            var parent = document.querySelector("#transactions .parent");
+            var fragment = document.createDocumentFragment();
 
+            var elem = makeElement("div", {
+                class: "transaction-list-item"
+            });
+            fragment.appendChild(elem);
+
+            var elem1 = makeElement("div", {
+                class: "transaction-date"
+            });
+            elem1.innerHTML = new Date().getDate();
+            elem.appendChild(elem1);
+
+            var elem2 = makeElement("div", {
+                class: "transaction-list-item-body"
+            });
+            elem.appendChild(elem2);
+            var elem3 = makeElement("span", {
+                class: "transaction-list-item-name"
+            });
+            elem3.innerHTML = transaction.name;
+            elem2.appendChild(elem3);
+
+            var elem4 = makeElement("br");
+            elem2.appendChild(elem4);
+
+            var elem5 = makeElement("span", {
+                class: "transaction-list-item-description"
+            });
+            elem5.innerHTML = transaction.comment;
+            elem2.appendChild(elem5);
+
+            var elem6 = makeElement("div", {
+                class: "pull-right"
+            });
+            elem.appendChild(elem6);
+
+            var elem7 = makeElement("div", {
+                class: "transaction-list-item-amount saving-amount"
+            });
+            elem6.appendChild(elem7);
+
+            var elem8 = makeElement("span", {
+                class: "ng-binding trans-amount"
+            });
+            elem8.innerHTML = transaction.amount.toFixed(2);
+            elem7.appendChild(elem8);
+
+            var elem9 = makeElement("a", {
+                class: "remove-button-icon fa-lg"
+            });
+            elem6.appendChild(elem9);
+
+            var elem10 = makeElement("i", {
+                class: "fa fa-trash"
+            });
+            elem10.setAttribute("aria-hidden", "true");
+            elem9.appendChild(elem10);
+
+            var elem11 = makeElement("a", {
+                class: "edit-button-icon"
+            });
+            elem6.appendChild(elem11);
+
+            var elem12 = makeElement("i", {
+                class: "fa fa-pencil fa-lg"
+            });
+            elem12.setAttribute("aria-hidden", "true");
+            elem11.appendChild(elem12);
+            parent.appendChild(fragment);
+
+        };
+
+        drawTransactionTable()
         drawBudgetTable();
         event.preventDefault();
 
@@ -445,7 +526,7 @@
             var option = makeElement("option", {
                 value: inputBankName.value
             });
-            option.innerText = inputBankName.value;
+            option.innerHTML = "&#xf283;&nbsp;" + inputBankName.value;
             var oprionGroup = document.querySelectorAll("#select-expenses optgroup");
             oprionGroup[1].appendChild(option);
         };
@@ -583,7 +664,7 @@
                 div3.appendChild(h3InDiv3);
 
                 var div4 = makeElement("div", {
-                    class: "row border-red last"
+                    class: "row border-blue last"
                 });
                 div1.appendChild(div4);
 
@@ -637,7 +718,7 @@
                 var option = makeElement("option", {
                     value: inputPurpose.value
                 });
-                option.innerText = inputPurpose.value;
+                option.innerHTML = "&#xf200;&nbsp;" + inputPurpose.value;
                 var selectSavings = document.querySelector("#select-savings");
                 selectSavings.appendChild(option);
             };
